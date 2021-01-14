@@ -8,6 +8,7 @@ namespace ThesisWebProjekt.Models
 {
     public partial class Programme
     {
+        //Test
         public Programme()
         {
             Thesis = new HashSet<Thesis>();
