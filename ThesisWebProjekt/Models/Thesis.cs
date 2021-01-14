@@ -136,6 +136,8 @@ namespace ThesisWebProjekt.Models
         public DateTime LastModified { get; set; }
 
         public Programme Programme { get; set; }
+
+
 //        public Supervisor Supervisor { get; set; }
     }
 }
