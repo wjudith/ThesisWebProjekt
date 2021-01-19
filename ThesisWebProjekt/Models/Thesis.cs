@@ -71,7 +71,7 @@ namespace ThesisWebProjekt.Models
         [Display(Name = "Status")]
         public Status Status { get; set; }
         [Display(Name = "Name")]
-        public string StudentName { get; set; }
+        public string StudentName { get; set; }  
         [Display(Name = "E-Mail")]
         public string StudentEmail { get; set; }
         [Display(Name = "Matrikelnummer")]
@@ -134,10 +134,11 @@ namespace ThesisWebProjekt.Models
         [Required]
         [Display(Name = "Zuletzt geändert")]
         public DateTime LastModified { get; set; }
-
+         
         public Programme Programme { get; set; }
 
 
 //        public Supervisor Supervisor { get; set; }
+//Hallo jetzt gehts, warum auch immer :
     }
 }
