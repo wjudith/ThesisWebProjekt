@@ -139,6 +139,5 @@ namespace ThesisWebProjekt.Models
 
 
 //        public Supervisor Supervisor { get; set; }
-//Hallo jetzt gehts, warum auch immer :
     }
 }
