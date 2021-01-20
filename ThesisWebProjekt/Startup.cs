@@ -30,7 +30,7 @@ namespace ThesisWebProjekt
             services.AddDbContext<ThesisDBContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ThesisDBContext")));
         }
-        /test
+        
 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

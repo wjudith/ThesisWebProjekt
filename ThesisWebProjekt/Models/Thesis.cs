@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -56,7 +57,7 @@ namespace ThesisWebProjekt.Models
         Insufficient = 5
     }
 
-    public partial class Thesis
+    public partial class Thesis : DbContext
     {
         public int Id { get; set; }
         [Display(Name = "Titel")]
@@ -71,7 +72,7 @@ namespace ThesisWebProjekt.Models
         [Display(Name = "Status")]
         public Status Status { get; set; }
         [Display(Name = "Name")]
-        public string StudentName { get; set; }
+        public string StudentName { get; set; }  
         [Display(Name = "E-Mail")]
         public string StudentEmail { get; set; }
         [Display(Name = "Matrikelnummer")]
@@ -134,7 +135,7 @@ namespace ThesisWebProjekt.Models
         [Required]
         [Display(Name = "Zuletzt geändert")]
         public DateTime LastModified { get; set; }
-
+         
         public Programme Programme { get; set; }
 
 
