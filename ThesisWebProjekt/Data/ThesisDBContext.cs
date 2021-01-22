@@ -9,7 +9,8 @@ namespace ThesisWebProjekt.Data
 {
     public class ThesisDBContext : DbContext
     {
-        public ThesisDBContext (DbContextOptions<ThesisDBContext> options)
+        // Konstruktor
+        public ThesisDBContext(DbContextOptions<ThesisDBContext> options)
             : base(options)
         {
         }
