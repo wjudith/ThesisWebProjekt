@@ -7,6 +7,12 @@ using System.Threading.Tasks;
 
 namespace ThesisWebProjekt.Models
 {
+    public class MyContext : DbContext
+    {
+        public MyContext (DbContextOptions<MyContext> options) : base(options)
+        { }
+        public DbSet<Thesis> Thesis { get; set; }
+    }
     public enum Status
     {
         [Display(Name = "Frei")]
@@ -57,7 +63,7 @@ namespace ThesisWebProjekt.Models
         Insufficient = 5
     }
 
-    public partial class Thesis : DbContext
+    public partial class Thesis 
     {
         public int Id { get; set; }
         [Display(Name = "Titel")]
