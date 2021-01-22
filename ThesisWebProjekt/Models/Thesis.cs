@@ -6,13 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace ThesisWebProjekt.Models
-{
-    public class MyContext : DbContext
-    {
-        public MyContext (DbContextOptions<MyContext> options) : base(options)
-        { }
-        public DbSet<Thesis> Thesis { get; set; }
-    }
+{ 
+    
     public enum Status
     {
         [Display(Name = "Frei")]

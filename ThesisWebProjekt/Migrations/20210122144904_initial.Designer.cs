@@ -10,8 +10,8 @@ using ThesisWebProjekt.Data;
 namespace ThesisWebProjekt.Migrations
 {
     [DbContext(typeof(ThesisDBContext))]
-    [Migration("20210112183921_Initial")]
-    partial class Initial
+    [Migration("20210122144904_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,7 +19,7 @@ namespace ThesisWebProjekt.Migrations
             modelBuilder
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.1");
+                .HasAnnotation("ProductVersion", "5.0.2");
 
             modelBuilder.Entity("ThesisWebProjekt.Models.Programme", b =>
                 {

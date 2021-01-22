@@ -17,7 +17,7 @@ namespace ThesisWebProjekt.Migrations
             modelBuilder
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.1");
+                .HasAnnotation("ProductVersion", "5.0.2");
 
             modelBuilder.Entity("ThesisWebProjekt.Models.Programme", b =>
                 {
