@@ -25,7 +25,8 @@ namespace ThesisWebProjekt.Data
             var x = modelBuilder.Entity<Thesis>().HasData(
                 new Thesis() { Id = 1, Title = "Bachelorthema 1", Description = "...", Bachelor = true, Master = false, Status = Status.Free},
                 new Thesis() { Id = 2, Title = "Bachelorthema 2", Description = "...", Bachelor = true, Master = false, Status = Status.Filed },
-                new Thesis() { Id = 3, Title = "Masterthema 1", Description = "...", Bachelor = false, Master = true, Status = Status.Free }
+                new Thesis() { Id = 3, Title = "Masterthema 1", Description = "...", Bachelor = false, Master = true, Status = Status.Free },
+                new Thesis() { Id = 4, Title = "Masterthema 2", Description = "...", Bachelor = false, Master = true, Status = Status.Graded}
                 );
             //modelBuilder.Entity<Models.Programme>(entity =>
             //{
