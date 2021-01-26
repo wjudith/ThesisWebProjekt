@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ThesisWebProjekt.Data;
+using ThesisWebProjekt.Areas.Identity.Data;
 
 namespace ThesisWebProjekt
 {
@@ -29,6 +30,14 @@ namespace ThesisWebProjekt
 
             services.AddDbContext<ThesisDBContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ThesisDBContext")));
+
+            //hier eigentlich die zwei DB kombinieren?
+            services.AddDbContext<ThesisIdentityContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("ThesisIdentityContextConnection")));
+
+            services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ThesisIdentityContext>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +58,7 @@ namespace ThesisWebProjekt
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
