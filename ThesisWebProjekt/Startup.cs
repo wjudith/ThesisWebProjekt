@@ -27,6 +27,7 @@ namespace ThesisWebProjekt
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddRazorPages();
 
             services.AddDbContext<ThesisDBContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ThesisDBContext")));
@@ -66,6 +67,7 @@ namespace ThesisWebProjekt
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }
