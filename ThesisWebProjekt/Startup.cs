@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ThesisWebProjekt.Data;
+using ThesisWebProjekt.Areas.Identity.Data;
 
 namespace ThesisWebProjekt
 {
@@ -26,9 +27,18 @@ namespace ThesisWebProjekt
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddRazorPages();
 
             services.AddDbContext<ThesisDBContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ThesisDBContext")));
+
+ /*           //hier eigentlich die zwei DB kombinieren?
+            services.AddDbContext<ThesisIdentityContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("ThesisIdentityContextConnection"))); */
+
+            services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ThesisDBContext>();
+
         }
         
 
@@ -51,6 +61,7 @@ namespace ThesisWebProjekt
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -58,6 +69,7 @@ namespace ThesisWebProjekt
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }

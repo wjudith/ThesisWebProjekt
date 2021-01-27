@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using ThesisWebProjekt.Areas.Identity.Data;
 using ThesisWebProjekt.Models;
 
 namespace ThesisWebProjekt.Data
 {
-    public class ThesisDBContext : DbContext
+    public class ThesisDBContext : IdentityDbContext<AppUser>
     {
         // Konstruktor
         public ThesisDBContext(DbContextOptions<ThesisDBContext> options)
@@ -22,6 +24,10 @@ namespace ThesisWebProjekt.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            // Customize the ASP.NET Identity model and override the defaults if needed.
+            // For example, you can rename the ASP.NET Identity table names and more.
+            // Add your customizations after calling base.OnModelCreating(builder);
 
             var x = modelBuilder.Entity<Thesis>().HasData(
                 new Thesis() { Id = 1, Title = "Bachelorthema 1", Description = "...", Bachelor = true, Master = false, Status = Status.Free},
