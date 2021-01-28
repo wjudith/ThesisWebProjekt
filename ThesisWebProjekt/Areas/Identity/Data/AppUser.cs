@@ -14,5 +14,7 @@ namespace ThesisWebProjekt.Areas.Identity.Data
 
 // bei 1:1 steht das drin, bei 1:n nicht zwingend nötig
 //        public Lehrstuhl Lehrstuhl { get; set; }
+
+        public IEnumerable<Thesis> Theses { get; set; }
     }
 }
