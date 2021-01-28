@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "User Verwaltung";
+}
+<h1>@ViewData["Title"]</h1>
+
+@model ThesisWebProjekt.Areas.Identity.Data.AppUser
+
+<h1 class="bg-info text-white">User erstellen</h1>
+<a asp-action="Index" class="btn btn-secondary">Back</a>
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <input asp-for="Password" class="form-control" />
+    </div>
+    <div class="form-group">
+        <select name="lehrstuhl" id="lehrstuhl">
+            <option value="lehrstuhl1">Lehrstuhl 1</option>
+            <option value="lehrstuhl2">Lehrstuhl 2</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Erstellen</button>
+</form>
