@@ -17,7 +17,11 @@ namespace ThesisWebProjekt.Data
         }
 
         public virtual DbSet<Models.Programme> Programme { get; set; }
+
+        public DbSet<Lehrstuhl> Lehrstuehle { get; set; }
+
 //        public virtual DbSet<Models.Supervisor> Supervisor { get; set; }
+
         public virtual DbSet<Models.Thesis> Thesis { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
