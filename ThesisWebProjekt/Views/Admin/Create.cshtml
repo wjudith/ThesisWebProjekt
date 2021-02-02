@@ -5,6 +5,7 @@
 
 @model ThesisWebProjekt.Models.AppUser
 
+
 <h1 class="bg-info text-white">User erstellen</h1>
 <a asp-action="Index" class="btn btn-secondary">Back</a>
 <div asp-validation-summary="All" class="text-danger"></div>
@@ -27,6 +28,7 @@
             <option value="lehrstuhl1">Lehrstuhl 1</option>
             <option value="lehrstuhl2">Lehrstuhl 2</option>
         </select>
+        <!-- Lehrstühle mithilfe von Html.DropDownList auswählen, Viewbag? -->        
     </div>
     <button type="submit" class="btn btn-primary">Erstellen</button>
 </form>
