@@ -10,7 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ThesisWebProjekt.Data;
-using ThesisWebProjekt.Areas.Identity.Data;
+using ThesisWebProjekt.Models;
 
 namespace ThesisWebProjekt
 {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using ThesisWebProjekt.Models;
 
-namespace ThesisWebProjekt.Areas.Identity.Data
+namespace ThesisWebProjekt.Models
 {
     // Add profile data for application users by adding properties to the AppUser class
     public class AppUser : IdentityUser
@@ -14,7 +14,7 @@ namespace ThesisWebProjekt.Areas.Identity.Data
         public int Id { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string UserName { get; set; }
 
         [Required]
         [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "E-mail is not valid")]

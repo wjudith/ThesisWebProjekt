@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using ThesisWebProjekt.Areas.Identity.Data;
 using ThesisWebProjekt.Models;
 
 namespace ThesisWebProjekt.Data
