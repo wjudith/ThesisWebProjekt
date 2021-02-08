@@ -97,6 +97,15 @@ namespace ThesisWebProjekt
             if (!inrole)
                 await um.AddToRoleAsync(user, "Admin");
 
+
+            //wenn die Rollen schon vorher festgelegt werden sollen, statt nachher über UI hinzufügbar:
+            IdentityRole role2 = await rm.FindByNameAsync("User");
+            if (role2 == null)
+            {
+                role2 = new IdentityRole("User");
+                await rm.CreateAsync(role2);
+            }
+
             return;
         }
     }
