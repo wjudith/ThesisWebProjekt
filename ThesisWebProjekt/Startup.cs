@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ThesisWebProjekt.Data;
 using ThesisWebProjekt.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace ThesisWebProjekt
 {
@@ -36,13 +37,15 @@ namespace ThesisWebProjekt
             services.AddDbContext<ThesisIdentityContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ThesisIdentityContextConnection"))); */
 
-            services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ThesisDBContext>();
+            services.AddIdentity<AppUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ThesisDBContext>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders();
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<AppUser> um, RoleManager<IdentityRole> rm)
         {
             if (env.IsDevelopment())
             {
@@ -69,6 +72,32 @@ namespace ThesisWebProjekt
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
+            //Wie in der Vorlesung standardmäßig ein Administrator zum Testen
+            CreateUserRoles(um, rm).Wait();
+        }
+
+        private async Task CreateUserRoles(UserManager<AppUser> um, RoleManager<IdentityRole> rm)
+        {
+            AppUser user = await um.FindByNameAsync("testadmin@gmail.com");
+            if(user == null)
+            {
+                user = new AppUser() { Email = "testadmin@gmail.com", UserName = "testadmin@gmail.com" };
+                await um.CreateAsync(user, "_PasswortAdmin321");
+            }
+
+            IdentityRole role = await rm.FindByNameAsync("Admin");
+            if (role == null)
+            {
+                role = new IdentityRole("Admin");
+                await rm.CreateAsync(role);
+            }
+
+            bool inrole = await um.IsInRoleAsync(user, "Admin");
+            if (!inrole)
+                await um.AddToRoleAsync(user, "Admin");
+
+            return;
         }
     }
 }
