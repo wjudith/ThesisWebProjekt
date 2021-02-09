@@ -37,7 +37,7 @@ namespace ThesisWebProjekt
             services.AddDbContext<ThesisIdentityContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ThesisIdentityContextConnection"))); */
 
-            services.AddIdentity<AppUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<AppUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ThesisDBContext>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
