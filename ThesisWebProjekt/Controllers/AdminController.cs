@@ -35,7 +35,7 @@ namespace ThesisWebProjekt.Controllers
             {
                 AppUser appUser = new AppUser
                 {
-                    UserName = user.UserName,
+                    UserName = user.Email,
                     Email = user.Email
                 };
 
