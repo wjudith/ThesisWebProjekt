@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ThesisWebProjekt.Controllers
 {
-    [Authorize(Roles = "Admin")]
+//    [Authorize(Roles = "Admin")]
     public class RoleManagerController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;

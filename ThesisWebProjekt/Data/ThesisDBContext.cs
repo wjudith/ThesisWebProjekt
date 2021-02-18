@@ -32,9 +32,15 @@ namespace ThesisWebProjekt.Data
             // Add your customizations after calling base.OnModelCreating(builder);
 
             var x = modelBuilder.Entity<Thesis>().HasData(
-                new Thesis() { Id = 1, Title = "Bachelorthema 1", Description = "...", Bachelor = true, Master = false, Status = Status.Free},
-                new Thesis() { Id = 2, Title = "Bachelorthema 2", Description = "...", Bachelor = true, Master = false, Status = Status.Filed },
-                new Thesis() { Id = 3, Title = "Masterthema 1", Description = "...", Bachelor = false, Master = true, Status = Status.Free }
+                new Models.Thesis() { Id = 1, Title = "Bachelorthema 1", Description = "...", Bachelor = true, Master = false, Status = Status.Free},
+                new Models.Thesis() { Id = 2, Title = "Bachelorthema 2", Description = "...", Bachelor = true, Master = false, Status = Status.Filed },
+                new Models.Thesis() { Id = 3, Title = "Masterthema 1", Description = "...", Bachelor = false, Master = true, Status = Status.Free }
+                );
+
+            var l = modelBuilder.Entity<Lehrstuhl>().HasData(
+                new Lehrstuhl() { Id = 10, Name = "BWL 10" },
+                new Lehrstuhl() { Id = 11, Name = "BWL 11" },
+                new Lehrstuhl() { Id = 12, Name = "BWL 12" }
                 );
             //modelBuilder.Entity<Models.Programme>(entity =>
             //{

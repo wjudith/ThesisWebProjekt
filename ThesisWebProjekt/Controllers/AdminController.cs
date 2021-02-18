@@ -9,7 +9,7 @@ using ThesisWebProjekt.Models;
 
 namespace ThesisWebProjekt.Controllers
 {
-    [Authorize(Roles = "Admin")]
+//    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private UserManager<AppUser> userManager;
@@ -35,7 +35,7 @@ namespace ThesisWebProjekt.Controllers
             {
                 AppUser appUser = new AppUser
                 {
-                    UserName = user.UserName,
+                    UserName = user.Email,
                     Email = user.Email
                 };
 
