@@ -131,7 +131,7 @@ namespace ThesisWebProjekt.Models
         public int? ProgrammeId { get; set; }
         [Display(Name = "Betreuer/-in")]
         public int? SupervisorId { get; set; }
-        [Required]
+       
         [Display(Name = "Zuletzt geändert")]
         public DateTime LastModified { get; set; }
 
