@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ThesisWebProjekt.Models
 {
+    //übernommen nur Supervisor gelöscht
     public enum Status
     {
         [Display(Name = "Frei")]
@@ -131,11 +129,11 @@ namespace ThesisWebProjekt.Models
         public int? ProgrammeId { get; set; }
         [Display(Name = "Betreuer/-in")]
         public int? SupervisorId { get; set; }
-        [Required]
+       
         [Display(Name = "Zuletzt geändert")]
         public DateTime LastModified { get; set; }
 
         public Programme Programme { get; set; }
-//      obsolet!  public Supervisor Supervisor { get; set; }
+
     }
 }
