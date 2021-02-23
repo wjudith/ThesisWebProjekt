@@ -129,13 +129,12 @@ namespace ThesisWebProjekt.Models
         public double? Grade { get; set; }
         [Display(Name = "Studiengang")]
         public int? ProgrammeId { get; set; }
-        [Display(Name = "Betreuer/-in")]
-        public int? SupervisorId { get; set; }
         [Required]
         [Display(Name = "Zuletzt geändert")]
         public DateTime LastModified { get; set; }
-
+        public int? SupervisorId { get; set; }
         public Programme Programme { get; set; }
-//        public Supervisor Supervisor { get; set; }
+        [Display(Name = "Betreuer/-in")]
+        public AppUser Betreuer { get; set; }
     }
 }

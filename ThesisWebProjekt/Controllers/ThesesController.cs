@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,16 +14,18 @@ namespace ThesisWebProjekt.Controllers
     public class ThesesController : Controller
     {
         private readonly ThesisDBContext _context;
+        private readonly UserManager<AppUser> _usermgr;
 
-        public ThesesController(ThesisDBContext context)
+        public ThesesController(ThesisDBContext context, UserManager<AppUser> usermgr)
         {
             _context = context;
+            _usermgr = usermgr;
         }
 
         // GET: Theses
         public async Task<IActionResult> Index()
         {
-            var thesisDBContext = _context.Thesis.Include(t => t.Programme);
+            var thesisDBContext = _context.Thesis.Include(t => t.Programme).Include(t => t.Betreuer);
             return View(await thesisDBContext.ToListAsync());
         }
 
@@ -36,6 +39,7 @@ namespace ThesisWebProjekt.Controllers
 
             var thesis = await _context.Thesis
                 .Include(t => t.Programme)
+                .Include(t => t.Betreuer)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (thesis == null)
             {
@@ -57,11 +61,13 @@ namespace ThesisWebProjekt.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Description,Bachelor,Master,Status,StudentName,StudentEmail,StudentId,Registration,Filing,Type,Summary,Strengths,Weaknesses,Evaluation,ContentVal,LayoutVal,StructureVal,StyleVal,LiteratureVal,DifficultyVal,NoveltyVal,RichnessVal,ContentWt,LayoutWt,StructureWt,StyleWt,LiteratureWt,DifficultyWt,NoveltyWt,RichnessWt,Grade,ProgrammeId,SupervisorId,LastModified")] Thesis thesis)
+        public async Task<IActionResult> Create([Bind("Id,Title,Description,Bachelor,Master,Status,StudentName,StudentEmail,StudentId,Registration,Filing,Type,Summary,Strengths,Weaknesses,Evaluation,ContentVal,LayoutVal,StructureVal,StyleVal,LiteratureVal,DifficultyVal,NoveltyVal,RichnessVal,ContentWt,LayoutWt,StructureWt,StyleWt,LiteratureWt,DifficultyWt,NoveltyWt,RichnessWt,Grade,ProgrammeId,LastModified")] Thesis thesis)
         {
             if (ModelState.IsValid)
             {
+                thesis.Betreuer = await _usermgr.GetUserAsync(User);
                 _context.Add(thesis);
+
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -91,7 +97,7 @@ namespace ThesisWebProjekt.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,Bachelor,Master,Status,StudentName,StudentEmail,StudentId,Registration,Filing,Type,Summary,Strengths,Weaknesses,Evaluation,ContentVal,LayoutVal,StructureVal,StyleVal,LiteratureVal,DifficultyVal,NoveltyVal,RichnessVal,ContentWt,LayoutWt,StructureWt,StyleWt,LiteratureWt,DifficultyWt,NoveltyWt,RichnessWt,Grade,ProgrammeId,SupervisorId,LastModified")] Thesis thesis)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,Bachelor,Master,Status,StudentName,StudentEmail,StudentId,Registration,Filing,Type,Summary,Strengths,Weaknesses,Evaluation,ContentVal,LayoutVal,StructureVal,StyleVal,LiteratureVal,DifficultyVal,NoveltyVal,RichnessVal,ContentWt,LayoutWt,StructureWt,StyleWt,LiteratureWt,DifficultyWt,NoveltyWt,RichnessWt,Grade,ProgrammeId,LastModified")] Thesis thesis)
         {
             if (id != thesis.Id)
             {
@@ -132,6 +138,7 @@ namespace ThesisWebProjekt.Controllers
 
             var thesis = await _context.Thesis
                 .Include(t => t.Programme)
+                .Include(t => t.Betreuer)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (thesis == null)
             {
