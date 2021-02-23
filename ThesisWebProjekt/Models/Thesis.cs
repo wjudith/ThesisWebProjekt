@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ThesisWebProjekt.Models
 {
+  
     //übernommen nur Supervisor gelöscht
     public enum Status
     {
@@ -66,8 +67,12 @@ namespace ThesisWebProjekt.Models
         public bool Bachelor { get; set; }
         [Display(Name = "Master")]
         public bool Master { get; set; }
+
+
         [Display(Name = "Status")]
         public Status Status { get; set; }
+
+
         [Display(Name = "Name")]
         public string StudentName { get; set; }
         [Display(Name = "E-Mail")]

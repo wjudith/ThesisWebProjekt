@@ -33,7 +33,7 @@ namespace ThesisWebProjekt
             services.AddDbContext<ThesisDBContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ThesisDBContext")));
 
- /*           //hier eigentlich die zwei DB kombinieren?
+ /*           //hier eigentlich die zwei DB kombinieren? (in Aufgabenstellung steht alten DB String verwenden also würde ich sagen nein!)
             services.AddDbContext<ThesisIdentityContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ThesisIdentityContextConnection"))); */
 
