@@ -2,9 +2,9 @@
     ViewData["Title"] = "User Verwaltung";
 }
 <h1>@ViewData["Title"]</h1>
+<!-- übernommen aus Link -->
 
 @model ThesisWebProjekt.Models.AppUser
-
 
 <h1 class="bg-info text-white">User erstellen</h1>
 <a asp-action="Index" class="btn btn-secondary">Zurück</a>
@@ -14,7 +14,8 @@
     <div class="form-group">
         <label asp-for="Email"></label>
         <input asp-for="Email" class="form-control" />
-    </div>
+        </div>
+
     <div class="form-group">
         <label asp-for="Password"></label>
         <input asp-for="Password" class="form-control" />
