@@ -1,26 +1,31 @@
-﻿@model IEnumerable<AppUser>
+﻿@using ThesisWebProjekt.Models
+@model List<UserRolesViewModel>
 
-<h1 class="bg-info text-white">All Users</h1>
-<a asp-action="Create" class="btn btn-secondary">Create a User</a>
-<a asp-controller="RoleManager" asp-action="Index" class="btn btn-secondary">Rollenverwaltung</a>
+<h1 class="bg-info text-white">Nutzerverwaltung</h1>
+<a asp-action="Create" class="btn btn-secondary">Neuen User hinzufügen</a>
+<a asp-controller="RoleManager" asp-action="Index" class="btn btn-secondary">Rollen verwalten</a>
 
 <table class="table table-sm table-bordered">
-    <tr><th>ID</th><th>Name</th><th>Email</th><th>Update</th><th>Delete</th></tr>
-    @foreach (AppUser user in Model)
+    <tr><th>ID</th><th>Name</th><th>Email</th><th>Rollen</th><th>Rollen bearbeiten</th><th>User bearbeiten</th><th>User löschen</th></tr>
+    @foreach (var user in Model)
     {
 <tr>
-    <td>@user.Id</td>
+    <td>@user.UserId</td>
     <td>@user.UserName</td>
     <td>@user.Email</td>
+    <td>@string.Join(", ", user.Roles.ToList())</td>
     <td>
-        <a class="btn btn-sm btn-primary" asp-action="Update" asp-route-id="@user.Id">
-            Update
+        <a class="btn btn-sm btn-primary" asp-action="Manage" asp-route-userId="@user.UserId">Rollen bearbeiten</a>
+    </td>
+    <td>
+        <a class="btn btn-sm btn-primary" asp-action="Update" asp-route-id="@user.UserId">
+            User bearbeiten
         </a>
     </td>
     <td>
-        <form asp-action="Delete" asp-route-id="@user.Id" method="post">
+        <form asp-action="Delete" asp-route-id="@user.UserId" method="post">
             <button type="submit" class="btn btn-sm btn-danger">
-                Delete
+                User löschen
             </button>
         </form>
     </td>
