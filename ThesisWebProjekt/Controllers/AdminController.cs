@@ -9,6 +9,10 @@ using ThesisWebProjekt.Models;
 namespace ThesisWebProjekt.Controllers
 {
     [Authorize(Roles = "Admin")]
+
+
+
+    //übernommen aus Link 3
     public class AdminController : Controller
     {
         private UserManager<AppUser> userManager;
@@ -42,6 +46,11 @@ namespace ThesisWebProjekt.Controllers
             return new List<string>(await userManager.GetRolesAsync(user));
         }
     
+
+
+
+
+
         //Erstellen
     public ViewResult Create() => View();
 
@@ -129,6 +138,9 @@ namespace ThesisWebProjekt.Controllers
                 ModelState.AddModelError("", "User Not Found");
             return View("Index", userManager.Users);
         }
+
+
+        //Erstellen der Manage Funktion (übernommen aus Link 3 Adding Users To Roles)
 
         public async Task<IActionResult> Manage(string userId)
         {

@@ -12,4 +12,5 @@ namespace ThesisWebProjekt.Models
         public string RoleName { get; set; }
         public bool Selected { get; set; }
     }
+    // Model to add Users to Roles
 }

@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
 namespace ThesisWebProjekt.Controllers
 {
-    //    [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
+    // Übernommen aus Link! to View and Manage Roles
     public class RoleManagerController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
