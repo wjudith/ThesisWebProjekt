@@ -5,24 +5,42 @@ using ThesisWebProjekt.Models;
 
 namespace ThesisWebProjekt.Controllers
 {
-    //    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private UserManager<AppUser> userManager;
         private IPasswordHasher<AppUser> passwordHasher;
+        private readonly RoleManager<IdentityRole> roleManager;
 
-        public AdminController(UserManager<AppUser> usrMgr, IPasswordHasher<AppUser> passwordHash)
+        public AdminController(UserManager<AppUser> usrMgr, IPasswordHasher<AppUser> passwordHash, RoleManager<IdentityRole> roleMgr)
         {
             userManager = usrMgr;
             passwordHasher = passwordHash;
+            roleManager = roleMgr;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View(userManager.Users);
+            var users = userManager.Users.ToList();
+            var userRolesViewModel = new List<UserRolesViewModel>();
+            foreach (AppUser user in users)
+            {
+                var thisViewModel = new UserRolesViewModel();
+                thisViewModel.UserId = user.Id;
+                thisViewModel.UserName = user.UserName;
+                thisViewModel.Email = user.Email;
+                thisViewModel.Roles = await GetUserRoles(user);
+                userRolesViewModel.Add(thisViewModel);
+            }
+            return View(userRolesViewModel);
         }
+        private async Task<List<string>> GetUserRoles(AppUser user)
+        {
+            return new List<string>(await userManager.GetRolesAsync(user));
+        }
+    
 
-        public ViewResult Create() => View();
+    public ViewResult Create() => View();
 
         [HttpPost]
         public async Task<IActionResult> Create(AppUser user)
@@ -107,6 +125,60 @@ namespace ThesisWebProjekt.Controllers
             else
                 ModelState.AddModelError("", "User Not Found");
             return View("Index", userManager.Users);
+        }
+
+        public async Task<IActionResult> Manage(string userId)
+        {
+            ViewBag.userId = userId;
+            var user = await userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = $"User with Id = {userId} cannot be found";
+                return View("NotFound");
+            }
+            ViewBag.UserName = user.UserName;
+            var model = new List<ManageUserRolesViewModel>();
+            foreach (var role in roleManager.Roles)
+            {
+                var userRolesViewModel = new ManageUserRolesViewModel
+                {
+                    RoleId = role.Id,
+                    RoleName = role.Name
+                };
+                if (await userManager.IsInRoleAsync(user, role.Name))
+                {
+                    userRolesViewModel.Selected = true;
+                }
+                else
+                {
+                    userRolesViewModel.Selected = false;
+                }
+                model.Add(userRolesViewModel);
+            }
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Manage(List<ManageUserRolesViewModel> model, string userId)
+        {
+            var user = await userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return View();
+            }
+            var roles = await userManager.GetRolesAsync(user);
+            var result = await userManager.RemoveFromRolesAsync(user, roles);
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError("", "Cannot remove user existing roles");
+                return View(model);
+            }
+            result = await userManager.AddToRolesAsync(user, model.Where(x => x.Selected).Select(y => y.RoleName));
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError("", "Cannot add selected roles to user");
+                return View(model);
+            }
+            return RedirectToAction("Index");
         }
     }
 }
