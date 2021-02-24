@@ -10,8 +10,8 @@ using ThesisWebProjekt.Data;
 namespace ThesisWebProjekt.Migrations
 {
     [DbContext(typeof(ThesisDBContext))]
-    [Migration("20210128145738_ThesesUser")]
-    partial class ThesesUser
+    [Migration("20210222184738_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -99,12 +99,10 @@ namespace ThesisWebProjekt.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -141,12 +139,10 @@ namespace ThesisWebProjekt.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -156,7 +152,7 @@ namespace ThesisWebProjekt.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("ThesisWebProjekt.Areas.Identity.Data.AppUser", b =>
+            modelBuilder.Entity("ThesisWebProjekt.Models.AppUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -191,6 +187,9 @@ namespace ThesisWebProjekt.Migrations
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
@@ -240,6 +239,23 @@ namespace ThesisWebProjekt.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Lehrstuehle");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 10,
+                            Name = "BWL 10"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "BWL 11"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Name = "BWL 12"
+                        });
                 });
 
             modelBuilder.Entity("ThesisWebProjekt.Models.Programme", b =>
@@ -450,7 +466,7 @@ namespace ThesisWebProjekt.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("ThesisWebProjekt.Areas.Identity.Data.AppUser", null)
+                    b.HasOne("ThesisWebProjekt.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -459,7 +475,7 @@ namespace ThesisWebProjekt.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("ThesisWebProjekt.Areas.Identity.Data.AppUser", null)
+                    b.HasOne("ThesisWebProjekt.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -474,7 +490,7 @@ namespace ThesisWebProjekt.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ThesisWebProjekt.Areas.Identity.Data.AppUser", null)
+                    b.HasOne("ThesisWebProjekt.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -483,23 +499,25 @@ namespace ThesisWebProjekt.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("ThesisWebProjekt.Areas.Identity.Data.AppUser", null)
+                    b.HasOne("ThesisWebProjekt.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ThesisWebProjekt.Areas.Identity.Data.AppUser", b =>
+            modelBuilder.Entity("ThesisWebProjekt.Models.AppUser", b =>
                 {
-                    b.HasOne("ThesisWebProjekt.Models.Lehrstuhl", null)
+                    b.HasOne("ThesisWebProjekt.Models.Lehrstuhl", "Lehrstuhl")
                         .WithMany("AppUsers")
                         .HasForeignKey("LehrstuhlId");
+
+                    b.Navigation("Lehrstuhl");
                 });
 
             modelBuilder.Entity("ThesisWebProjekt.Models.Thesis", b =>
                 {
-                    b.HasOne("ThesisWebProjekt.Areas.Identity.Data.AppUser", null)
+                    b.HasOne("ThesisWebProjekt.Models.AppUser", null)
                         .WithMany("Theses")
                         .HasForeignKey("AppUserId");
 
@@ -511,7 +529,7 @@ namespace ThesisWebProjekt.Migrations
                     b.Navigation("Programme");
                 });
 
-            modelBuilder.Entity("ThesisWebProjekt.Areas.Identity.Data.AppUser", b =>
+            modelBuilder.Entity("ThesisWebProjekt.Models.AppUser", b =>
                 {
                     b.Navigation("Theses");
                 });

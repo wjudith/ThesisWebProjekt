@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ThesisWebProjekt.Models
 {
+  
+    //übernommen nur Supervisor gelöscht
     public enum Status
     {
         [Display(Name = "Frei")]
@@ -68,8 +67,12 @@ namespace ThesisWebProjekt.Models
         public bool Bachelor { get; set; }
         [Display(Name = "Master")]
         public bool Master { get; set; }
+
+
         [Display(Name = "Status")]
         public Status Status { get; set; }
+
+
         [Display(Name = "Name")]
         public string StudentName { get; set; }
         [Display(Name = "E-Mail")]

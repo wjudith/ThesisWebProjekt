@@ -10,8 +10,8 @@ using ThesisWebProjekt.Data;
 namespace ThesisWebProjekt.Migrations
 {
     [DbContext(typeof(ThesisDBContext))]
-    [Migration("20210202115020_UserCreate2")]
-    partial class UserCreate2
+    [Migration("20210223145513_second")]
+    partial class second
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -99,12 +99,10 @@ namespace ThesisWebProjekt.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -141,12 +139,10 @@ namespace ThesisWebProjekt.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -169,7 +165,6 @@ namespace ThesisWebProjekt.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -194,7 +189,6 @@ namespace ThesisWebProjekt.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
@@ -213,7 +207,6 @@ namespace ThesisWebProjekt.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
-                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -246,6 +239,23 @@ namespace ThesisWebProjekt.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Lehrstuehle");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 10,
+                            Name = "BWL 10"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "BWL 11"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Name = "BWL 12"
+                        });
                 });
 
             modelBuilder.Entity("ThesisWebProjekt.Models.Programme", b =>
@@ -442,6 +452,25 @@ namespace ThesisWebProjekt.Migrations
                             StructureWt = 10,
                             StyleWt = 10,
                             Title = "Masterthema 1"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Bachelor = false,
+                            ContentWt = 30,
+                            Description = "...",
+                            DifficultyWt = 5,
+                            LastModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LayoutWt = 15,
+                            LiteratureWt = 10,
+                            Master = true,
+                            NoveltyWt = 10,
+                            RichnessWt = 10,
+                            Status = 0,
+                            StructureWt = 10,
+                            StudentName = "Jannis",
+                            StyleWt = 10,
+                            Title = "Masterthema 2"
                         });
                 });
 
