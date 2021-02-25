@@ -10,14 +10,13 @@
 
 
 <table class="table table-sm table-bordered">
-    <tr><th>ID</th><th>Name</th><th>Email</th><th>Rollen</th><th>Rollen bearbeiten</th><th>User bearbeiten</th><th>User löschen</th></tr>
+    <tr><th>ID</th><th>Email</th><th>Rollen</th><th>Rollen bearbeiten</th><th>User bearbeiten</th><th>User löschen</th></tr>
 
 
     @foreach (var user in Model)
     {
 <tr>
     <td>@user.UserId</td>
-    <td>@user.UserName</td>
     <td>@user.Email</td>
     <td>@string.Join(", ", user.Roles.ToList())</td>
     <td>
