@@ -4,105 +4,140 @@
         ViewData["Title"] = "Index";
     }
 
+<script>
+    function resetForm() {
+       
+        document.getElementById("Sort").value = null;
+    
+        document.getElementById("Form").submit();
+    }
+</script>
+
+
+
     <h1>Übersicht</h1>
 
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Bachelor)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Master)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Status)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.StudentName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.StudentEmail)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.StudentId)
-                </th>
-              
-                <th>
-                    @Html.DisplayNameFor(model => model.Type)
-                </th>
 
-                <th>
-                    @Html.DisplayNameFor(model => model.Grade)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Betreuer)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.LastModified)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Programme)
-                </th>
-                <th> @Html.DisplayNameFor(model => model.Lehrstuhl)</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Bachelor)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Master)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StudentName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StudentEmail)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StudentId)
-                </td>
+    <form id="Form" asp-action="Index" method="get">
+        <p>
+            <a class="btn btn-primary" asp-action="Create"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;&nbsp;Create new</a>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Type)
-                </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Grade)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Betreuer)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastModified)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Programme.Name)
-                </td>
-                <th> @Html.DisplayNameFor(model => model.Lehrstuhl)</th>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-            }
-        </tbody>
-    </table>
+            <input type="button" value="Reset" class="btn btn-default pull-right" onclick="resetForm()" />
+        </p>
+
+
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+
+                <div>
+                    <label class="control-label">Sort by:</label>
+                    @Html.DropDownList("Sort", Html.GetEnumSelectList(typeof(ThesisWebProjekt.Controllers.ThesesController.SortCriteria)), new { id = "Sort", @class = "form-control", onchange = "document.getElementById('Form').submit()" })
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Bachelor)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Master)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StudentName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StudentEmail)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StudentId)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Type)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Grade)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Betreuer)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LastModified)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Programme)
+                    </th>
+                    <th> @ViewBag.Lehrstuhl</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Bachelor)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Master)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StudentName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StudentEmail)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StudentId)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Type)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Grade)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Betreuer)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastModified)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Programme.Name)
+                        </td>
+                        <th> @ViewBag.Lehrstuhl</th>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </form>

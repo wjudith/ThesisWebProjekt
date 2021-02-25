@@ -8,7 +8,7 @@ namespace ThesisWebProjekt.Models
     {
        
         public string Password { get; set; } 
-        // 1:1 Beziehung zw. Lehrstuhl und AppUser
+        // 1:n Beziehung zw. Lehrstuhl und AppUser
         public Lehrstuhl Lehrstuhl { get; set; }
         public ICollection<Thesis> Theses { get; set; }
     }

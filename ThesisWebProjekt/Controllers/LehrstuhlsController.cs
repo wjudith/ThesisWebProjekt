@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,24 +10,22 @@ using ThesisWebProjekt.Models;
 
 namespace ThesisWebProjekt.Controllers
 {
-    public class LehrstuhlController : Controller
+    public class LehrstuhlsController : Controller
     {
         private readonly ThesisDBContext _context;
-        private readonly UserManager<AppUser> _usermgr;
 
-        public LehrstuhlController(ThesisDBContext context, UserManager<AppUser> usermgr)
+        public LehrstuhlsController(ThesisDBContext context)
         {
             _context = context;
-            _usermgr = usermgr;
         }
 
-        // GET: Lehrstuhl
+        // GET: Lehrstuhls
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Lehrstuehle.Include(c => c.AppUsers).ToListAsync());
+            return View(await _context.Lehrstuehle.ToListAsync());
         }
 
-        // GET: Lehrstuhl/Details/5
+        // GET: Lehrstuhls/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -46,13 +43,13 @@ namespace ThesisWebProjekt.Controllers
             return View(lehrstuhl);
         }
 
-        // GET: Lehrstuhl/Create
+        // GET: Lehrstuhls/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Lehrstuhl/Create
+        // POST: Lehrstuhls/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -61,7 +58,6 @@ namespace ThesisWebProjekt.Controllers
         {
             if (ModelState.IsValid)
             {
-             //   lehrstuhl.User = await _usermgr.GetUserAsync(User);
                 _context.Add(lehrstuhl);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -69,7 +65,7 @@ namespace ThesisWebProjekt.Controllers
             return View(lehrstuhl);
         }
 
-        // GET: Lehrstuhl/Edit/5
+        // GET: Lehrstuhls/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -85,7 +81,7 @@ namespace ThesisWebProjekt.Controllers
             return View(lehrstuhl);
         }
 
-        // POST: Lehrstuhl/Edit/5
+        // POST: Lehrstuhls/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -120,7 +116,7 @@ namespace ThesisWebProjekt.Controllers
             return View(lehrstuhl);
         }
 
-        // GET: Lehrstuhl/Delete/5
+        // GET: Lehrstuhls/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -138,7 +134,7 @@ namespace ThesisWebProjekt.Controllers
             return View(lehrstuhl);
         }
 
-        // POST: Lehrstuhl/Delete/5
+        // POST: Lehrstuhls/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

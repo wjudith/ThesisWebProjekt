@@ -1,6 +1,8 @@
-﻿namespace ThesisWebProjekt.Models
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace ThesisWebProjekt.Models
 {
-    public class ThesisDbContext
+    public class ThesisDbContext 
     {
     }
 }

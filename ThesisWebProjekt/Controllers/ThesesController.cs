@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -15,6 +16,22 @@ namespace ThesisWebProjekt.Controllers
     [Authorize(Roles = "Admin")]
     public class ThesesController : Controller
     {
+        //Sortierung der Thesisliste!
+
+        public enum SortCriteria
+        {
+            [Display(Name = "Titel")]
+            Title,
+            [Display(Name = "Name")]
+            Name,
+
+
+
+            [Display(Name = "Status")]
+            Status
+        }
+
+
         private readonly ThesisDBContext _context;
         private readonly UserManager<AppUser> _usermgr;
 
@@ -24,12 +41,52 @@ namespace ThesisWebProjekt.Controllers
             _usermgr = usermgr;
         }
 
+
+
+
+
+
         // GET: Theses
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(SortCriteria Sort = SortCriteria.Status)
         {
-            var thesisDBContext = _context.Thesis.Include(t => t.Programme).Include(t => t.Betreuer);
-            return View(await thesisDBContext.ToListAsync());
+            IQueryable<Thesis> query = _context.Thesis;
+
+
+            switch (Sort)
+            {
+                case SortCriteria.Title:
+                    query = query.OrderBy(m => m.Title);
+                    break;
+                case SortCriteria.Name:
+                    query = query.OrderBy(m => m.StudentName);
+                    break;
+                case SortCriteria.Status:
+                    query = query.OrderBy(m => m.Status);
+                    break;
+            }
+
+
+           
+            var thesisDBContext = _context.Thesis.Include(t => t.Programme).Include(t => t.Betreuer).Include(t => t.Lehrstuhl);
+            int PageTotal = await query.CountAsync();
+
+
+
+
+            ViewBag.Sort = Sort;
+          
+            ViewBag.PageTotal = PageTotal;
+        
+
+            return View(await query.ToListAsync());
+            //   return View(await thesisDBContext.ToListAsync());
         }
+
+
+
+
+
+
 
         // GET: Theses/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -42,6 +99,7 @@ namespace ThesisWebProjekt.Controllers
             var thesis = await _context.Thesis
                 .Include(t => t.Programme)
                 .Include(t => t.Betreuer)
+                .Include(t => t.Lehrstuhl)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (thesis == null)
             {
@@ -143,6 +201,7 @@ namespace ThesisWebProjekt.Controllers
             var thesis = await _context.Thesis
                 .Include(t => t.Programme)
                 .Include(t => t.Betreuer)
+                .Include(t => t.Lehrstuhl)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (thesis == null)
             {
