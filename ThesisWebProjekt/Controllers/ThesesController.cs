@@ -51,6 +51,9 @@ namespace ThesisWebProjekt.Controllers
             return View(thesis);
         }
 
+        // SORTING
+       
+
         // GET: Theses/Create
         public IActionResult Create()
         {

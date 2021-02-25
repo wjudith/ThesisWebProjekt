@@ -139,5 +139,10 @@ namespace ThesisWebProjekt.Models
         public Programme Programme { get; set; }
         [Display(Name = "Betreuer/-in")]
         public AppUser Betreuer { get; set; }
+
+        [Display(Name = "Lehrstuhl")]
+        public Lehrstuhl Lehrstuhl { get; set; }
+
+
     }
 }

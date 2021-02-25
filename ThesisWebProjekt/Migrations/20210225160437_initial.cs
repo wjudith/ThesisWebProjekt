@@ -2,7 +2,7 @@
 
 namespace ThesisWebProjekt.Migrations
 {
-    public partial class fifth : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

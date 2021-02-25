@@ -9,7 +9,7 @@ namespace ThesisWebProjekt.Models
         { }
 
 
-
+        //jeder Lehrstuhl hat ID , Name , und Verweis auf jew. Appuser
         public int Id { get; set; }
         [Required]
         [Display(Name = "Name")]

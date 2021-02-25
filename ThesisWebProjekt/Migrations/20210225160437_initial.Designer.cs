@@ -10,8 +10,8 @@ using ThesisWebProjekt.Data;
 namespace ThesisWebProjekt.Migrations
 {
     [DbContext(typeof(ThesisDBContext))]
-    [Migration("20210224214904_six")]
-    partial class six
+    [Migration("20210225160437_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -320,6 +320,9 @@ namespace ThesisWebProjekt.Migrations
                     b.Property<int?>("LayoutWt")
                         .HasColumnType("int");
 
+                    b.Property<int?>("LehrstuhlId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("LiteratureVal")
                         .HasColumnType("int");
 
@@ -393,6 +396,8 @@ namespace ThesisWebProjekt.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("BetreuerId");
+
+                    b.HasIndex("LehrstuhlId");
 
                     b.HasIndex("ProgrammeId");
 
@@ -472,7 +477,6 @@ namespace ThesisWebProjekt.Migrations
                             StructureWt = 10,
                             StudentName = "Jannis",
                             StyleWt = 10,
-                            SupervisorId = 1,
                             Title = "Masterthema 2"
                         });
                 });
@@ -543,12 +547,18 @@ namespace ThesisWebProjekt.Migrations
                         .WithMany("Theses")
                         .HasForeignKey("BetreuerId");
 
+                    b.HasOne("ThesisWebProjekt.Models.Lehrstuhl", "Lehrstuhl")
+                        .WithMany()
+                        .HasForeignKey("LehrstuhlId");
+
                     b.HasOne("ThesisWebProjekt.Models.Programme", "Programme")
                         .WithMany("Thesis")
                         .HasForeignKey("ProgrammeId")
                         .HasConstraintName("FK_dbo.Theses_dbo.Programmes_ProgrammeId");
 
                     b.Navigation("Betreuer");
+
+                    b.Navigation("Lehrstuhl");
 
                     b.Navigation("Programme");
                 });

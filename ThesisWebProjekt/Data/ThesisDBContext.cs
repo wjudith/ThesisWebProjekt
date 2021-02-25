@@ -9,15 +9,16 @@ using ThesisWebProjekt.Models;
 namespace ThesisWebProjekt.Data
 {
     public class ThesisDBContext : IdentityDbContext<AppUser>
-    {
+    {      
         public ThesisDBContext (DbContextOptions<ThesisDBContext> options)
             : base(options)
         {
         }
+       
 
-        public virtual DbSet<Models.Programme> Programme { get; set; }
+        public virtual DbSet<ThesisWebProjekt.Models.Programme> Programme { get; set; }
 
-        public DbSet<Lehrstuhl> Lehrstuehle { get; set; }
+        public DbSet<ThesisWebProjekt.Models.Lehrstuhl> Lehrstuehle { get; set; }
 
 
 
@@ -32,7 +33,7 @@ namespace ThesisWebProjekt.Data
                 new Models.Thesis() { Id = 1, Title = "Bachelorthema 1", Description = "...", Bachelor = true, Master = false, Status = Status.Free},
                 new Models.Thesis() { Id = 2, Title = "Bachelorthema 2", Description = "...", Bachelor = true, Master = false, Status = Status.Filed },
                 new Models.Thesis() { Id = 3, Title = "Masterthema 1", Description = "...", Bachelor = false, Master = true, Status = Status.Free, Grade = 3},
-                new Models.Thesis() { Id = 4, Title = "Masterthema 2", Description = "...", Bachelor = false, Master = true, Status = Status.Free, StudentName = "Jannis", SupervisorId = 1, Grade = 1} );
+                new Models.Thesis() { Id = 4, Title = "Masterthema 2", Description = "...", Bachelor = false, Master = true, Status = Status.Free, StudentName = "Jannis", Grade = 1 } );
 
             var l = modelBuilder.Entity<Lehrstuhl>().HasData(
                 new Lehrstuhl() { Id = 10, Name = "BWL 10" },
