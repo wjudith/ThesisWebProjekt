@@ -38,18 +38,20 @@ namespace ThesisWebProjekt
  /*           //hier eigentlich die zwei DB kombinieren? (in Aufgabenstellung steht alten DB String verwenden also würde ich sagen nein!)
             services.AddDbContext<ThesisIdentityContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ThesisIdentityContextConnection"))); */
-
+ // aus VL Rollen 
             services.AddIdentity<AppUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ThesisDBContext>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
 
-            //
+           
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<AppUser> um, RoleManager<IdentityRole> rm)
+
+
         {
             if (env.IsDevelopment())
             {
@@ -76,6 +78,11 @@ namespace ThesisWebProjekt
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
+
+
+
+
 
             //Wie in der Vorlesung standardmäßig ein Administrator zum Testen
             CreateUserRoles(um, rm).Wait();

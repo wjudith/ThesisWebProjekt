@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,6 +12,7 @@ using ThesisWebProjekt.Models;
 
 namespace ThesisWebProjekt.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ThesesController : Controller
     {
         private readonly ThesisDBContext _context;
