@@ -37,7 +37,7 @@
                 </div>
             </div>
             <div class="form-group">
-             
+
                 <div class="col-md-10">
                     <div class="checkbox">
                         <label>
@@ -110,23 +110,38 @@
                     <select asp-for="Studiengang" class="col-md-10 form-control" asp-items="Html.GetEnumSelectList(typeof(Studiengang))" style='width: 25%;'></select>
                     <span asp-validation-for="Studiengang" class="text-danger"></span>
                 </div>
+
+
+
+
+
+
             </div>
             <div class="form-group">
-                <label asp-for="Registration" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <kendo-datepicker name='datepicker' for="Registration" style='width: 25%;' />
+              
+                <p>
+                    <label>Anmeldedatum</label>
+                    <input id="date" />
                     <span asp-validation-for="Registration" class="text-danger"></span>
-                </div>
+                </p>
+
             </div>
+
+
+
+
             <div class="form-group">
-                <label asp-for="Filing" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <kendo-datepicker name='datepicker' for="Filing" style='width: 25%;' />
+           
+                <p>
+                    <label>Abgabedatum</label>
+                    <input id="date1" />
                     <span asp-validation-for="Filing" class="text-danger"></span>
-                </div>
+                </p>
+
             </div>
         </div>
     </div>
+
 
 
 
@@ -346,5 +361,33 @@
                 document.getElementById("RichnessVal").value * document.getElementById("RichnessWt").value / 100.0;
             document.getElementById("Notenvorschlag").value = vorschlag.toFixed(2).replace(".", ",");
         }
+    </script>
+
+
+
+
+
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.3.1017/styles/kendo.common-bootstrap.core.min.css" />
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.3.1017/styles/kendo.bootstrap.min.css" />
+
+    <script src="https://kendo.cdn.telerik.com/2018.3.1017/js/kendo.ui.core.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2018.3.1017/js/cultures/kendo.culture.de-DE.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#date").kendoDatePicker({
+                culture: 'de-DE',
+                value: new Date()
+            });
+        });
+    </script>
+<!---ist so wahrsch. sehr unsauber gelöst-->
+    <script>
+        $(document).ready(function () {
+            $("#date1").kendoDatePicker({
+                culture: 'de-DE',
+                value: new Date()
+            });
+        });
     </script>
 }
