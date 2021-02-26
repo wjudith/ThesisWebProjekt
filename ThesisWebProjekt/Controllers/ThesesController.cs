@@ -24,9 +24,12 @@ namespace ThesisWebProjekt.Controllers
             Title,
             [Display(Name = "Name")]
             Name,
-
-
-
+            [Display(Name = "Matrikelnummer")]
+            StudentId,
+            [Display(Name = "Thesistyp")]
+            Type,
+            [Display(Name = "Note")]
+            Grade,
             [Display(Name = "Status")]
             Status
         }
@@ -59,6 +62,15 @@ namespace ThesisWebProjekt.Controllers
                     break;
                 case SortCriteria.Name:
                     query = query.OrderBy(m => m.StudentName);
+                    break;
+                case SortCriteria.StudentId:
+                    query = query.OrderBy(m => m.StudentId);
+                    break;
+                case SortCriteria.Type:
+                    query = query.OrderBy(m => m.Type);
+                    break;
+                case SortCriteria.Grade:
+                    query = query.OrderBy(m => m.Grade);
                     break;
                 case SortCriteria.Status:
                     query = query.OrderBy(m => m.Status);
