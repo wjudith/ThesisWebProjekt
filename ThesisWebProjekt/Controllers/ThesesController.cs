@@ -13,7 +13,7 @@ using ThesisWebProjekt.Models;
 
 namespace ThesisWebProjekt.Controllers
 {
-    [Authorize(Roles = "Admin")]
+   
     public class ThesesController : Controller
     {
         //Sortierung der Thesisliste!
@@ -145,7 +145,7 @@ namespace ThesisWebProjekt.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProgrammeId"] = new SelectList(_context.Set<Programme>(), "Id", "Name", thesis.ProgrammeId);
+            ViewData["ProgrammeId"] = new SelectList(_context.Set<Programme>(), "Id", "Name", thesis.Studiengang);
             return View(thesis);
         }
 
@@ -162,7 +162,7 @@ namespace ThesisWebProjekt.Controllers
             {
                 return NotFound();
             }
-            ViewData["ProgrammeId"] = new SelectList(_context.Set<Programme>(), "Id", "Name", thesis.ProgrammeId);
+            ViewData["ProgrammeId"] = new SelectList(_context.Set<Programme>(), "Id", "Name", thesis.Studiengang);
             return View(thesis);
         }
 
@@ -208,10 +208,15 @@ namespace ThesisWebProjekt.Controllers
                 }
 
             }
-            ViewData["ProgrammeId"] = new SelectList(_context.Programme, "Id", "Name", thesis.ProgrammeId);
+            ViewData["Studiengang"] = new SelectList(_context.Programme, "Id", "Name", thesis.Studiengang);
            
             return View(thesis);
         }
+
+
+
+
+
 
         // GET: Theses/Delete/5
         public async Task<IActionResult> Delete(int? id)

@@ -6,7 +6,9 @@ namespace ThesisWebProjekt.Models
     public class Lehrstuhl
     {
         public Lehrstuhl()
-        { }
+        {
+          
+        }
 
 
         //jeder Lehrstuhl hat ID , Name , und Verweis auf jew. Appuser
@@ -15,7 +17,7 @@ namespace ThesisWebProjekt.Models
         [Display(Name = "Name")]
         public string Name { get; set; }
 
-        public ICollection<AppUser> AppUsers { get; set; }
+        public  ICollection<AppUser> AppUsers { get; set; }
     }
     
 }

@@ -51,7 +51,7 @@ namespace ThesisWebProjekt.Data
 
                 entity.HasOne(d => d.Programme)
                     .WithMany(p => p.Thesis)
-                    .HasForeignKey(d => d.ProgrammeId)
+                    .HasForeignKey(d => d.Studiengang)
                     .HasConstraintName("FK_dbo.Theses_dbo.Programmes_ProgrammeId");
 
 

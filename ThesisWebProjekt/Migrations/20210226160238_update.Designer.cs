@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ThesisWebProjekt.Data;
 
 namespace ThesisWebProjekt.Migrations
 {
     [DbContext(typeof(ThesisDBContext))]
-    partial class ThesisDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210226160238_update")]
+    partial class update
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -336,6 +338,9 @@ namespace ThesisWebProjekt.Migrations
                     b.Property<int?>("NoveltyWt")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ProgrammeId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("Registration")
                         .HasColumnType("datetime2");
 
@@ -366,9 +371,6 @@ namespace ThesisWebProjekt.Migrations
                     b.Property<string>("StudentName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Studiengang")
-                        .HasColumnType("int");
-
                     b.Property<int?>("StyleVal")
                         .HasColumnType("int");
 
@@ -397,7 +399,7 @@ namespace ThesisWebProjekt.Migrations
 
                     b.HasIndex("LehrstuhlId");
 
-                    b.HasIndex("Studiengang");
+                    b.HasIndex("ProgrammeId");
 
                     b.ToTable("Thesis");
 
@@ -553,7 +555,7 @@ namespace ThesisWebProjekt.Migrations
 
                     b.HasOne("ThesisWebProjekt.Models.Programme", "Programme")
                         .WithMany("Thesis")
-                        .HasForeignKey("Studiengang")
+                        .HasForeignKey("ProgrammeId")
                         .HasConstraintName("FK_dbo.Theses_dbo.Programmes_ProgrammeId");
 
                     b.Navigation("Betreuer");

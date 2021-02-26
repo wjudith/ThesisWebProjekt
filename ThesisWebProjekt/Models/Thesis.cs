@@ -27,6 +27,14 @@ namespace ThesisWebProjekt.Models
         Master = 1
     }
 
+
+    public enum Studiengang
+    {
+        [Display(Name = "Wirtschaftsinformatik")]
+        Wirtschaftsinformatik = 0,
+        [Display(Name = " Wirtschaftswissenschaften ")]
+        Wirtschaftswissenschaften = 1
+    }
     public enum Grade
     {
         [Display(Name = "1 (sehr gut)")]
@@ -127,11 +135,17 @@ namespace ThesisWebProjekt.Models
         public int? NoveltyWt { get; set; } = 10;
         [Display(Name = "Themenerfassung Gewichtung")]
         public int? RichnessWt { get; set; } = 10;
+
+
         [Display(Name = "Note")]
-        [DisplayFormat(DataFormatString = "{0:F1}")]
-        public double? Grade { get; set; }
+        [DisplayFormat(DataFormatString = "{0:F1}", ApplyFormatInEditMode = true)]
+        public double Grade { get; set; }
+
+
+
+
         [Display(Name = "Studiengang")]
-        public int? ProgrammeId { get; set; }
+        public int? Studiengang { get; set; }
         [Required]
         [Display(Name = "Zuletzt geändert")]
         public DateTime LastModified { get; set; }
