@@ -12,6 +12,9 @@ using Microsoft.EntityFrameworkCore;
 using ThesisWebProjekt.Data;
 using ThesisWebProjekt.Models;
 using Microsoft.AspNetCore.Identity;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
+using Amazon.OpsWorks.Model;
 
 namespace ThesisWebProjekt
 {
@@ -80,7 +83,16 @@ namespace ThesisWebProjekt
             });
 
 
+            //Client Validierung um eine deutsche Lokalisierung erweitert (in Thesis Index.cshtml auch ganz oben!)
 
+            var defaultCulture = new CultureInfo("de-DE");
+            var localizationOptions = new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(defaultCulture),
+                SupportedCultures = new List<CultureInfo> { defaultCulture },
+                SupportedUICultures = new List<CultureInfo> { defaultCulture }
+            };
+            app.UseRequestLocalization(localizationOptions);
 
 
 
@@ -120,4 +132,5 @@ namespace ThesisWebProjekt
             return;
         }
     }
+
 }
