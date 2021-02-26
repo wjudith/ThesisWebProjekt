@@ -171,7 +171,7 @@ namespace ThesisWebProjekt.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,Bachelor,Master,Status,StudentName,StudentEmail,StudentId,Registration,Filing,Type,Summary,Strengths,Weaknesses,Evaluation,ContentVal,LayoutVal,StructureVal,StyleVal,LiteratureVal,DifficultyVal,NoveltyVal,RichnessVal,ContentWt,LayoutWt,StructureWt,StyleWt,LiteratureWt,DifficultyWt,NoveltyWt,RichnessWt,Grade,ProgrammeId,LastModified")] Thesis thesis)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,Bachelor,Master,Status,StudentName,StudentEmail,StudentId,Registration,Filing,Type,Summary,Strengths,Weaknesses,Evaluation,ContentVal,LayoutVal,StructureVal,StyleVal,LiteratureVal,DifficultyVal,NoveltyVal,RichnessVal,ContentWt,LayoutWt,StructureWt,StyleWt,LiteratureWt,DifficultyWt,NoveltyWt,RichnessWt,Grade,ProgrammeId,LehrstuhlId")] Thesis thesis)
         {
             if (id != thesis.Id)
             {
@@ -180,25 +180,36 @@ namespace ThesisWebProjekt.Controllers
 
             if (ModelState.IsValid)
             {
-                try
+                int? weight = thesis.ContentWt + thesis.LayoutWt + thesis.StyleWt + thesis.StructureWt + thesis.DifficultyWt + thesis.NoveltyWt + thesis.RichnessWt + thesis.LiteratureWt; ;
+                if (weight != 100)
                 {
-                    _context.Update(thesis);
-                    await _context.SaveChangesAsync();
+                    ModelState.AddModelError(string.Empty, "Alle Gewichtungsfaktoren müssen angegeben sein und 100% ergeben.");
                 }
-                catch (DbUpdateConcurrencyException)
+                else
                 {
-                    if (!ThesisExists(thesis.Id))
+                    try
                     {
-                        return NotFound();
+                        thesis.LastModified = DateTime.UtcNow;
+                        _context.Update(thesis);
+                        await _context.SaveChangesAsync();
                     }
-                    else
+                    catch (DbUpdateConcurrencyException)
                     {
-                        throw;
+                        if (!ThesisExists(thesis.Id))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
                     }
+                    return RedirectToAction(nameof(Index));
                 }
-                return RedirectToAction(nameof(Index));
+
             }
-            ViewData["ProgrammeId"] = new SelectList(_context.Set<Programme>(), "Id", "Name", thesis.ProgrammeId);
+            ViewData["ProgrammeId"] = new SelectList(_context.Programme, "Id", "Name", thesis.ProgrammeId);
+           
             return View(thesis);
         }
 

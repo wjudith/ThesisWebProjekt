@@ -32,9 +32,11 @@
         <div class="panel panel-default">
             <div class="panel-heading">
 
-                <div>
-                    <label class="control-label">Sort by:</label>
-                    @Html.DropDownList("Sort", Html.GetEnumSelectList(typeof(ThesisWebProjekt.Controllers.ThesesController.SortCriteria)), new { id = "Sort", @class = "form-control", onchange = "document.getElementById('Form').submit()" })
+                <div class="dropdown">
+                    
+                        <label class="control-label">Sortieren nach:</label>
+                         @Html.DropDownList("Sort", Html.GetEnumSelectList(typeof(ThesisWebProjekt.Controllers.ThesesController.SortCriteria)), new { id = "Sort", @class = "form-control", onchange = "document.getElementById('Form').submit()" })
+
                 </div>
             </div>
         </div>
@@ -49,12 +51,7 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Title)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Bachelor)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Master)
-                    </th>
+                  
                     <th>
                         @Html.DisplayNameFor(model => model.Status)
                     </th>
@@ -95,12 +92,7 @@
                             @Html.DisplayFor(modelItem => item.Title)
                         </td>
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Bachelor)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Master)
-                        </td>
+                     
                         <td>
                             @Html.DisplayFor(modelItem => item.Status)
                         </td>
