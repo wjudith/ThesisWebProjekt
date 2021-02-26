@@ -4,50 +4,67 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<div class="page-header">
+    <h1>Thesis bearbeiten</h1>
+</div>
 
-<h4>Thesis</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+
+
+
+
+<form asp-action="Edit" class="form-horizontal">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Thema</div>
+        <div class="panel-body">
             <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
+                <label asp-for="Title" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="Title" class="col-md-10 form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
+                <label class="col-md-2 control-label">geeignet für</label>
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        <label>
+                            <input asp-for="Bachelor" /> @Html.DisplayNameFor(model => model.Bachelor)
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input asp-for="Master" /> @Html.DisplayNameFor(model => model.Master)
+                        </label>
+                    </div>
+                </div>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Bachelor" /> @Html.DisplayNameFor(model => model.Bachelor)
-                </label>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Master" /> @Html.DisplayNameFor(model => model.Master)
-                </label>
-            </div>
+        </div>
+    </div>
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Bearbeitung</div>
+        <div class="panel-body">
             <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-
-                <select name="Status" id="Status" asp-for="Status">
-                    <option value="0" id="0">0</option>
-                    <option value="1" id="1">1</option>
-                    <option value="2" id="2">2</option>
-                    <option value="3" id="3">3</option>
-                    <option value="4" id="4">4</option>
-                </select>
-
-                <span asp-validation-for="Status" class="text-danger"></span>
-
+                <label asp-for="Status" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <select asp-for="Status" class="col-md-10 form-control" asp-items="Html.GetEnumSelectList(typeof(Status))" style='width: 25%;'></select>
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
             </div>
-
             <div class="form-group">
                 <label asp-for="Lehrstuhl" class="control-label"></label>
                 <select name="lehrstuhl" id="lehrstuhl" asp-for="Lehrstuhl">
@@ -58,162 +75,243 @@
                 </select>
                 <!-- nicht optimal, vllt. Lehrstühle mithilfe von Html.DropDownList auswählen?, Viewbag?  IST JETZT MIT DROPDOWNLIST!-->
             </div>
+
             <div class="form-group">
-                <label asp-for="StudentName" class="control-label"></label>
-                <input asp-for="StudentName" class="form-control" />
-                <span asp-validation-for="StudentName" class="text-danger"></span>
+                <label asp-for="StudentName" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="StudentName" class="form-control" style='width: 50%;' />
+                    <span asp-validation-for="StudentName" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
-                <label asp-for="StudentEmail" class="control-label"></label>
-                <input asp-for="StudentEmail" class="form-control" />
-                <span asp-validation-for="StudentEmail" class="text-danger"></span>
+                <label asp-for="StudentId" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="StudentId" class="form-control" style='width: 25%;' />
+                    <span asp-validation-for="StudentId" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
-                <label asp-for="StudentId" class="control-label"></label>
-                <input asp-for="StudentId" class="form-control" />
-                <span asp-validation-for="StudentId" class="text-danger"></span>
+                <label asp-for="StudentEmail" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="StudentEmail" class="form-control" style='width: 50%;' />
+                    <span asp-validation-for="StudentEmail" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
-                <label asp-for="Registration" class="control-label"></label>
-                <input asp-for="Registration" class="form-control" />
-                <span asp-validation-for="Registration" class="text-danger"></span>
+                <label asp-for="Type" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <select asp-for="Type" class="col-md-10 form-control" asp-items="Html.GetEnumSelectList(typeof(ThesisType))" style='width: 50%;'></select>
+                    <span asp-validation-for="Type" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
-                <label asp-for="Filing" class="control-label"></label>
-                <input asp-for="Filing" class="form-control" />
-                <span asp-validation-for="Filing" class="text-danger"></span>
+                <label asp-for="ProgrammeId" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <select asp-for="ProgrammeId" class="form-control" asp-items="ViewBag.ProgrammeId" style='width: 50%;'></select>
+                    <span asp-validation-for="ProgrammeId" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
-                <label asp-for="Type" class="control-label"></label>
-                <input asp-for="Type" class="form-control" />
-                <span asp-validation-for="Type" class="text-danger"></span>
+                <label asp-for="Registration" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <kendo-datepicker name='datepicker' for="Registration" style='width: 25%;' />
+                    <span asp-validation-for="Registration" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
-                <label asp-for="Summary" class="control-label"></label>
-                <input asp-for="Summary" class="form-control" />
-                <span asp-validation-for="Summary" class="text-danger"></span>
+                <label asp-for="Filing" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <kendo-datepicker name='datepicker' for="Filing" style='width: 25%;' />
+                    <span asp-validation-for="Filing" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Strengths" class="control-label"></label>
-                <input asp-for="Strengths" class="form-control" />
-                <span asp-validation-for="Strengths" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Weaknesses" class="control-label"></label>
-                <input asp-for="Weaknesses" class="form-control" />
-                <span asp-validation-for="Weaknesses" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Evaluation" class="control-label"></label>
-                <input asp-for="Evaluation" class="form-control" />
-                <span asp-validation-for="Evaluation" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ContentVal" class="control-label"></label>
-                <input asp-for="ContentVal" class="form-control" />
-                <span asp-validation-for="ContentVal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LayoutVal" class="control-label"></label>
-                <input asp-for="LayoutVal" class="form-control" />
-                <span asp-validation-for="LayoutVal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="StructureVal" class="control-label"></label>
-                <input asp-for="StructureVal" class="form-control" />
-                <span asp-validation-for="StructureVal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="StyleVal" class="control-label"></label>
-                <input asp-for="StyleVal" class="form-control" />
-                <span asp-validation-for="StyleVal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LiteratureVal" class="control-label"></label>
-                <input asp-for="LiteratureVal" class="form-control" />
-                <span asp-validation-for="LiteratureVal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DifficultyVal" class="control-label"></label>
-                <input asp-for="DifficultyVal" class="form-control" />
-                <span asp-validation-for="DifficultyVal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NoveltyVal" class="control-label"></label>
-                <input asp-for="NoveltyVal" class="form-control" />
-                <span asp-validation-for="NoveltyVal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RichnessVal" class="control-label"></label>
-                <input asp-for="RichnessVal" class="form-control" />
-                <span asp-validation-for="RichnessVal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ContentWt" class="control-label"></label>
-                <input asp-for="ContentWt" class="form-control" />
-                <span asp-validation-for="ContentWt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LayoutWt" class="control-label"></label>
-                <input asp-for="LayoutWt" class="form-control" />
-                <span asp-validation-for="LayoutWt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="StructureWt" class="control-label"></label>
-                <input asp-for="StructureWt" class="form-control" />
-                <span asp-validation-for="StructureWt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="StyleWt" class="control-label"></label>
-                <input asp-for="StyleWt" class="form-control" />
-                <span asp-validation-for="StyleWt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LiteratureWt" class="control-label"></label>
-                <input asp-for="LiteratureWt" class="form-control" />
-                <span asp-validation-for="LiteratureWt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DifficultyWt" class="control-label"></label>
-                <input asp-for="DifficultyWt" class="form-control" />
-                <span asp-validation-for="DifficultyWt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NoveltyWt" class="control-label"></label>
-                <input asp-for="NoveltyWt" class="form-control" />
-                <span asp-validation-for="NoveltyWt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RichnessWt" class="control-label"></label>
-                <input asp-for="RichnessWt" class="form-control" />
-                <span asp-validation-for="RichnessWt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Grade" class="control-label"></label>
-                <input asp-for="Grade" class="form-control" />
-                <span asp-validation-for="Grade" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProgrammeId" class="control-label"></label>
-                <select asp-for="ProgrammeId" class="form-control" asp-items="ViewBag.ProgrammeId"></select>
-                <span asp-validation-for="ProgrammeId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Betreuer" class="control-label"></label>
-                <input asp-for="Betreuer" class="form-control" />
-                <span asp-validation-for="Betreuer" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LastModified" class="control-label"></label>
-                <input asp-for="LastModified" class="form-control" />
-                <span asp-validation-for="LastModified" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
+
+
+
+
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Bewertung</div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label asp-for="Summary" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <textarea asp-for="Summary" class="form-control" rows="10"></textarea>
+                    <span asp-validation-for="Summary" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Strengths" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <textarea asp-for="Strengths" class="form-control" rows="10"></textarea>
+                    <span asp-validation-for="Strengths" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Weaknesses" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <textarea asp-for="Weaknesses" class="form-control" rows="10"></textarea>
+                    <span asp-validation-for="Weaknesses" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Evaluation" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <textarea asp-for="Evaluation" class="form-control" rows="10"></textarea>
+                    <span asp-validation-for="Evaluation" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContentVal" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <div class="input-group" style="width: 75%;">
+                        <select asp-for="ContentVal" class="form-control" asp-items="Html.GetEnumSelectList(typeof(Grade))"></select>
+                        <span class="input-group-addon" id="basic-addon1">Gewichtung:</span>
+                        <input asp-for="ContentWt" class="form-control" />
+                        <span class="input-group-addon" id="basic-addon1">%</span>
+                    </div>
+                    <span asp-validation-for="ContentVal" class="text-danger"></span>
+                    <span asp-validation-for="ContentWt" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="LayoutVal" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <div class="input-group" style="width: 75%;">
+                        <select asp-for="LayoutVal" class="form-control" asp-items="Html.GetEnumSelectList(typeof(Grade))"></select>
+                        <span class="input-group-addon" id="basic-addon1">Gewichtung:</span>
+                        <input asp-for="LayoutWt" class="form-control" />
+                        <span class="input-group-addon" id="basic-addon1">%</span>
+                    </div>
+                    <span asp-validation-for="LayoutVal" class="text-danger"></span>
+                    <span asp-validation-for="LayoutWt" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="StructureVal" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <div class="input-group" style="width: 75%;">
+                        <select asp-for="StructureVal" class="form-control" asp-items="Html.GetEnumSelectList(typeof(Grade))"></select>
+                        <span class="input-group-addon" id="basic-addon1">Gewichtung:</span>
+                        <input asp-for="StructureWt" class="form-control" />
+                        <span class="input-group-addon" id="basic-addon1">%</span>
+                    </div>
+                    <span asp-validation-for="StructureVal" class="text-danger"></span>
+                    <span asp-validation-for="StructureWt" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="StyleVal" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <div class="input-group" style="width: 75%;">
+                        <select asp-for="StyleVal" class="form-control" asp-items="Html.GetEnumSelectList(typeof(Grade))"></select>
+                        <span class="input-group-addon" id="basic-addon1">Gewichtung:</span>
+                        <input asp-for="StyleWt" class="form-control" />
+                        <span class="input-group-addon" id="basic-addon1">%</span>
+                    </div>
+                    <span asp-validation-for="StyleVal" class="text-danger"></span>
+                    <span asp-validation-for="StyleWt" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="LiteratureVal" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <div class="input-group" style="width: 75%;">
+                        <select asp-for="LiteratureVal" class="form-control" asp-items="Html.GetEnumSelectList(typeof(Grade))"></select>
+                        <span class="input-group-addon" id="basic-addon1">Gewichtung:</span>
+                        <input asp-for="LiteratureWt" class="form-control" />
+                        <span class="input-group-addon" id="basic-addon1">%</span>
+                    </div>
+                    <span asp-validation-for="LiteratureVal" class="text-danger"></span>
+                    <span asp-validation-for="LiteratureWt" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="DifficultyVal" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <div class="input-group" style="width: 75%;">
+                        <select asp-for="DifficultyVal" class="form-control" asp-items="Html.GetEnumSelectList(typeof(Grade))"></select>
+                        <span class="input-group-addon" id="basic-addon1">Gewichtung:</span>
+                        <input asp-for="DifficultyWt" class="form-control" />
+                        <span class="input-group-addon" id="basic-addon1">%</span>
+                    </div>
+                    <span asp-validation-for="DifficultyVal" class="text-danger"></span>
+                    <span asp-validation-for="DifficultyWt" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="NoveltyVal" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <div class="input-group" style="width: 75%;">
+                        <select asp-for="NoveltyVal" class="form-control" asp-items="Html.GetEnumSelectList(typeof(Grade))"></select>
+                        <span class="input-group-addon" id="basic-addon1">Gewichtung:</span>
+                        <input asp-for="NoveltyWt" class="form-control" />
+                        <span class="input-group-addon" id="basic-addon1">%</span>
+                    </div>
+                    <span asp-validation-for="NoveltyVal" class="text-danger"></span>
+                    <span asp-validation-for="NoveltyWt" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="RichnessVal" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <div class="input-group" style="width: 75%;">
+                        <select asp-for="RichnessVal" class="form-control" asp-items="Html.GetEnumSelectList(typeof(Grade))"></select>
+                        <span class="input-group-addon" id="basic-addon1">Gewichtung:</span>
+                        <input asp-for="RichnessWt" class="form-control" />
+                        <span class="input-group-addon" id="basic-addon1">%</span>
+                    </div>
+                    <span asp-validation-for="RichnessVal" class="text-danger"></span>
+                    <span asp-validation-for="RichnessWt" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">Gesamtnote</div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label class="col-md-2 control-label">Notenvorschlag</label>
+                <div class="col-md-10" style='width: 25%;'>
+                    <div class="input-group">
+                        <input class="form-control" id="Notenvorschlag" readonly />
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" onclick="VorschlagBerechnen()">Berechnen!</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Grade" class="col-md-2 control-label"></label>
+                <div class="col-md-10" style="width: 25%;">
+                    <select asp-for="Grade" class="form-control">
+                        <option value="1">1,0</option>
+                        <option value="1,3">1,3</option>
+                        <option value="1,7">1,7</option>
+                        <option value="2">2,0</option>
+                        <option value="2,3">2,3</option>
+                        <option value="2,7">2,7</option>
+                        <option value="3">3,0</option>
+                        <option value="3,3">3,3</option>
+                        <option value="3,7">3,7</option>
+                        <option value="4">4,0</option>
+                        <option value="5">5,0</option>
+                    </select>
+                    <span asp-validation-for="Grade" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Speichern" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
 <div>
     <a asp-action="Index">Back to List</a>
@@ -221,4 +319,32 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        function VorschlagBerechnen() {
+            var gewichtung = document.getElementById("ContentWt").value +
+                document.getElementById("LayoutWt").value +
+                document.getElementById("StructureWt").value +
+                document.getElementById("StyleWt").value +
+                document.getElementById("LiteratureWt").value +
+                document.getElementById("DifficultyWt").value +
+                document.getElementById("NoveltyWt").value +
+                document.getElementById("DifficultyWt").value +
+                document.getElementById("RichnessWt").value;
+
+            if (isNaN(gewichtung)) {
+                window.alert("Alle Gewichtungsfaktoren müssen angegeben werden und in Summe 100% ergeben.");
+                return;
+            }
+
+            var vorschlag = document.getElementById("ContentVal").value * document.getElementById("ContentWt").value / 100.0 +
+                document.getElementById("LayoutVal").value * document.getElementById("LayoutWt").value / 100.0 +
+                document.getElementById("StructureVal").value * document.getElementById("StructureWt").value / 100.0 +
+                document.getElementById("StyleVal").value * document.getElementById("StyleWt").value / 100.0 +
+                document.getElementById("LiteratureVal").value * document.getElementById("LiteratureWt").value / 100.0 +
+                document.getElementById("DifficultyVal").value * document.getElementById("DifficultyWt").value / 100.0 +
+                document.getElementById("NoveltyVal").value * document.getElementById("NoveltyWt").value / 100.0 +
+                document.getElementById("RichnessVal").value * document.getElementById("RichnessWt").value / 100.0;
+            document.getElementById("Notenvorschlag").value = vorschlag.toFixed(2).replace(".", ",");
+        }
+    </script>
 }
