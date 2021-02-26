@@ -16,7 +16,7 @@ namespace ThesisWebProjekt.Data
         }
        
 
-        public virtual DbSet<ThesisWebProjekt.Models.Programme> Programme { get; set; }
+        public virtual DbSet<ThesisWebProjekt.Models.Studiengang> Studiengang { get; set; }
 
         public DbSet<ThesisWebProjekt.Models.Lehrstuhl> Lehrstuehle { get; set; }
 
@@ -52,7 +52,7 @@ namespace ThesisWebProjekt.Data
                 entity.HasOne(d => d.Programme)
                     .WithMany(p => p.Thesis)
                     .HasForeignKey(d => d.Studiengang)
-                    .HasConstraintName("FK_dbo.Theses_dbo.Programmes_ProgrammeId");
+                    .HasConstraintName("FK_dbo.Theses_dbo.Studiengang_StudiengangId");
 
 
  

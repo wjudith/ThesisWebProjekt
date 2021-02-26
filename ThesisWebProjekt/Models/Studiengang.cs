@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 namespace ThesisWebProjekt.Models
 {
     //übernommen
-    public partial class Programme
+    public partial class Studiengang
     {
-        public Programme()
+        public Studiengang()
         {
             Thesis = new HashSet<Thesis>();
         }

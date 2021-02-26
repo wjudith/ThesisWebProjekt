@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ThesisWebProjekt.Data;
 
 namespace ThesisWebProjekt.Migrations
 {
     [DbContext(typeof(ThesisDBContext))]
-    partial class ThesisDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210226182101_kendo")]
+    partial class kendo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -256,7 +258,7 @@ namespace ThesisWebProjekt.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ThesisWebProjekt.Models.Studiengang", b =>
+            modelBuilder.Entity("ThesisWebProjekt.Models.Programme", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -269,7 +271,7 @@ namespace ThesisWebProjekt.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Studiengang");
+                    b.ToTable("Programme");
                 });
 
             modelBuilder.Entity("ThesisWebProjekt.Models.Thesis", b =>
@@ -551,10 +553,10 @@ namespace ThesisWebProjekt.Migrations
                         .WithMany()
                         .HasForeignKey("LehrstuhlId");
 
-                    b.HasOne("ThesisWebProjekt.Models.Studiengang", "Programme")
+                    b.HasOne("ThesisWebProjekt.Models.Programme", "Programme")
                         .WithMany("Thesis")
                         .HasForeignKey("Studiengang")
-                        .HasConstraintName("FK_dbo.Theses_dbo.Studiengang_StudiengangId");
+                        .HasConstraintName("FK_dbo.Theses_dbo.Programmes_ProgrammeId");
 
                     b.Navigation("Betreuer");
 
@@ -573,7 +575,7 @@ namespace ThesisWebProjekt.Migrations
                     b.Navigation("AppUsers");
                 });
 
-            modelBuilder.Entity("ThesisWebProjekt.Models.Studiengang", b =>
+            modelBuilder.Entity("ThesisWebProjekt.Models.Programme", b =>
                 {
                     b.Navigation("Thesis");
                 });

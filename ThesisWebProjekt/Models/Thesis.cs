@@ -28,13 +28,7 @@ namespace ThesisWebProjekt.Models
     }
 
 
-    public enum Studiengang
-    {
-        [Display(Name = "Wirtschaftsinformatik")]
-        Wirtschaftsinformatik = 0,
-        [Display(Name = " Wirtschaftswissenschaften ")]
-        Wirtschaftswissenschaften = 1
-    }
+   
     public enum Grade
     {
         [Display(Name = "1 (sehr gut)")]
@@ -88,10 +82,10 @@ namespace ThesisWebProjekt.Models
         [Display(Name = "Matrikelnummer")]
         public string StudentId { get; set; }
         [Display(Name = "Anmeldedatum")]
-        [DisplayFormat(DataFormatString = "{0:d}")]
+        
         public DateTime? Registration { get; set; }
         [Display(Name = "Abgabedatum")]
-        [DisplayFormat(DataFormatString = "{0:d}")]
+        
         public DateTime? Filing { get; set; }
         [Display(Name = "Thesistyp")]
         public ThesisType? Type { get; set; }
@@ -150,7 +144,7 @@ namespace ThesisWebProjekt.Models
         [Display(Name = "Zuletzt geändert")]
         public DateTime LastModified { get; set; }
         public int? SupervisorId { get; set; }
-        public Programme Programme { get; set; }
+        public Studiengang Programme { get; set; }
         [Display(Name = "Betreuer/-in")]
         public AppUser Betreuer { get; set; }
 

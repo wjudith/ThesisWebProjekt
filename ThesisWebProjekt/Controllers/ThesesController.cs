@@ -50,6 +50,7 @@ namespace ThesisWebProjekt.Controllers
 
 
         // GET: Theses
+     
         public async Task<IActionResult> Index(SortCriteria Sort = SortCriteria.Status)
         {
             IQueryable<Thesis> query = _context.Thesis;
@@ -101,6 +102,7 @@ namespace ThesisWebProjekt.Controllers
 
 
         // GET: Theses/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -121,13 +123,14 @@ namespace ThesisWebProjekt.Controllers
             return View(thesis);
         }
 
-        // SORTING
-       
+        
+
 
         // GET: Theses/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
-            ViewData["ProgrammeId"] = new SelectList(_context.Set<Programme>(), "Id", "Name");
+            ViewData["StudiengangId"] = new SelectList(_context.Set<Studiengang>(), "Id", "Name");
             return View();
         }
 
@@ -135,21 +138,24 @@ namespace ThesisWebProjekt.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("Id,Title,Description,Bachelor,Master,Status,StudentName,StudentEmail,StudentId,Registration,Filing,Type,Summary,Strengths,Weaknesses,Evaluation,ContentVal,LayoutVal,StructureVal,StyleVal,LiteratureVal,DifficultyVal,NoveltyVal,RichnessVal,ContentWt,LayoutWt,StructureWt,StyleWt,LiteratureWt,DifficultyWt,NoveltyWt,RichnessWt,Grade,ProgrammeId,LastModified")] Thesis thesis)
         {
             if (ModelState.IsValid)
             {
                 thesis.Betreuer = await _usermgr.GetUserAsync(User);
+                thesis.LastModified = DateTime.Now;
                 _context.Add(thesis);
 
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProgrammeId"] = new SelectList(_context.Set<Programme>(), "Id", "Name", thesis.Studiengang);
+            ViewData["StudiengangId"] = new SelectList(_context.Set<Studiengang>(), "Id", "Name", thesis.Studiengang);
             return View(thesis);
         }
 
         // GET: Theses/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -162,11 +168,12 @@ namespace ThesisWebProjekt.Controllers
             {
                 return NotFound();
             }
-            ViewData["ProgrammeId"] = new SelectList(_context.Set<Programme>(), "Id", "Name", thesis.Studiengang);
+            ViewData["StudiengangId"] = new SelectList(_context.Set<Studiengang>(), "Id", "Name", thesis.Studiengang);
             return View(thesis);
         }
 
         // POST: Theses/Edit/5
+        [Authorize(Roles = "Admin")]
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -189,7 +196,7 @@ namespace ThesisWebProjekt.Controllers
                 {
                     try
                     {
-                        thesis.LastModified = DateTime.UtcNow;
+                        thesis.LastModified = DateTime.Now;
                         _context.Update(thesis);
                         await _context.SaveChangesAsync();
                     }
@@ -208,7 +215,7 @@ namespace ThesisWebProjekt.Controllers
                 }
 
             }
-            ViewData["Studiengang"] = new SelectList(_context.Programme, "Id", "Name", thesis.Studiengang);
+            ViewData["Studiengang"] = new SelectList(_context.Studiengang, "Id", "Name", thesis.Studiengang);
            
             return View(thesis);
         }
@@ -219,6 +226,7 @@ namespace ThesisWebProjekt.Controllers
 
 
         // GET: Theses/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -240,6 +248,7 @@ namespace ThesisWebProjekt.Controllers
         }
 
         // POST: Theses/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
