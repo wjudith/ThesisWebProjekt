@@ -1,0 +1,79 @@
+﻿@model IEnumerable<ThesisWebProjekt.Models.Thesis>
+
+@{
+    ViewData["Title"] = "Public";
+}
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container"></div>
+        </nav>
+    </header>
+    <h1 align="center">Freie Themen</h1>
+    <div class="container">
+
+        @foreach (var item in Model)
+        {
+        <main role="main" class="pb-3">
+            <div class="panel-group" id="accordion" role="tablist">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse_350">
+                                @Html.DisplayFor(modelItem => item.Title) (@Html.DisplayFor(modelItem => item.Type))
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse_350" class="panel-collapse collapse" role="tabpanel">
+                        <div class="panel-body">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th>Beschreibung</th>
+                                        <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Status</th>
+                                        <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Betreuer/-in</th>
+                                        <td><a href="mailto:@Html.DisplayFor(modelItem => item.Betreuer.Email)">E-Mail</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        }            
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - ThesisWebProjekt
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+
+
