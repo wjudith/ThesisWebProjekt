@@ -146,6 +146,7 @@ namespace ThesisWebProjekt.Models
 
         [Display(Name = "Lehrstuhl")]
         public Lehrstuhl Lehrstuhl { get; set; }
+        public ThesisType ThesisType { get; set; }
 
 
     }

@@ -399,6 +399,9 @@ namespace ThesisWebProjekt.Migrations
                     b.Property<string>("Summary")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ThesisType")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -427,7 +430,7 @@ namespace ThesisWebProjekt.Migrations
                             ContentWt = 30,
                             Description = "...",
                             DifficultyWt = 5,
-                            Grade = 0.0,
+                            Grade = 1.0,
                             LastModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LayoutWt = 15,
                             LiteratureWt = 10,
@@ -436,7 +439,11 @@ namespace ThesisWebProjekt.Migrations
                             RichnessWt = 10,
                             Status = 0,
                             StructureWt = 10,
+                            StudentEmail = "judithw@studmail.de",
+                            StudentId = "2845776",
+                            StudentName = "Judith",
                             StyleWt = 10,
+                            ThesisType = 0,
                             Title = "Bachelorthema 1"
                         },
                         new
@@ -446,7 +453,7 @@ namespace ThesisWebProjekt.Migrations
                             ContentWt = 30,
                             Description = "...",
                             DifficultyWt = 5,
-                            Grade = 0.0,
+                            Grade = 4.0,
                             LastModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LayoutWt = 15,
                             LiteratureWt = 10,
@@ -455,7 +462,11 @@ namespace ThesisWebProjekt.Migrations
                             RichnessWt = 10,
                             Status = 3,
                             StructureWt = 10,
+                            StudentEmail = "jürgen@studmail.de",
+                            StudentId = "2343546",
+                            StudentName = "Jürgen",
                             StyleWt = 10,
+                            ThesisType = 1,
                             Title = "Bachelorthema 2"
                         },
                         new
@@ -465,7 +476,7 @@ namespace ThesisWebProjekt.Migrations
                             ContentWt = 30,
                             Description = "...",
                             DifficultyWt = 5,
-                            Grade = 3.0,
+                            Grade = 5.0,
                             LastModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LayoutWt = 15,
                             LiteratureWt = 10,
@@ -474,7 +485,11 @@ namespace ThesisWebProjekt.Migrations
                             RichnessWt = 10,
                             Status = 0,
                             StructureWt = 10,
+                            StudentEmail = "helga@studmail.de",
+                            StudentId = "2785476",
+                            StudentName = "Helga",
                             StyleWt = 10,
+                            ThesisType = 1,
                             Title = "Masterthema 1"
                         },
                         new
@@ -484,7 +499,7 @@ namespace ThesisWebProjekt.Migrations
                             ContentWt = 30,
                             Description = "...",
                             DifficultyWt = 5,
-                            Grade = 1.0,
+                            Grade = 2.0,
                             LastModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LayoutWt = 15,
                             LiteratureWt = 10,
@@ -493,8 +508,11 @@ namespace ThesisWebProjekt.Migrations
                             RichnessWt = 10,
                             Status = 0,
                             StructureWt = 10,
+                            StudentEmail = "jannisbrzk@studmail.de",
+                            StudentId = "2345676",
                             StudentName = "Jannis",
                             StyleWt = 10,
+                            ThesisType = 0,
                             Title = "Masterthema 2"
                         });
                 });

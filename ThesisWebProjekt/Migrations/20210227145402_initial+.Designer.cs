@@ -10,7 +10,7 @@ using ThesisWebProjekt.Data;
 namespace ThesisWebProjekt.Migrations
 {
     [DbContext(typeof(ThesisDBContext))]
-    [Migration("20210227100546_initial")]
+    [Migration("20210227145402_initial+")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -389,7 +389,7 @@ namespace ThesisWebProjekt.Migrations
                     b.Property<string>("StudentName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Studiengang")
+                    b.Property<int?>("StudiengangId")
                         .HasColumnType("int");
 
                     b.Property<int?>("StyleVal")
@@ -400,9 +400,6 @@ namespace ThesisWebProjekt.Migrations
 
                     b.Property<string>("Summary")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("SupervisorId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -420,7 +417,7 @@ namespace ThesisWebProjekt.Migrations
 
                     b.HasIndex("LehrstuhlId");
 
-                    b.HasIndex("Studiengang");
+                    b.HasIndex("StudiengangId");
 
                     b.ToTable("Thesis");
 
@@ -441,7 +438,6 @@ namespace ThesisWebProjekt.Migrations
                             RichnessWt = 10,
                             Status = 0,
                             StructureWt = 10,
-                            Studiengang = 4,
                             StyleWt = 10,
                             Title = "Bachelorthema 1"
                         },
@@ -461,7 +457,6 @@ namespace ThesisWebProjekt.Migrations
                             RichnessWt = 10,
                             Status = 3,
                             StructureWt = 10,
-                            Studiengang = 3,
                             StyleWt = 10,
                             Title = "Bachelorthema 2"
                         },
@@ -481,7 +476,6 @@ namespace ThesisWebProjekt.Migrations
                             RichnessWt = 10,
                             Status = 0,
                             StructureWt = 10,
-                            Studiengang = 2,
                             StyleWt = 10,
                             Title = "Masterthema 1"
                         },
@@ -502,7 +496,6 @@ namespace ThesisWebProjekt.Migrations
                             Status = 0,
                             StructureWt = 10,
                             StudentName = "Jannis",
-                            Studiengang = 1,
                             StyleWt = 10,
                             Title = "Masterthema 2"
                         });
@@ -578,16 +571,15 @@ namespace ThesisWebProjekt.Migrations
                         .WithMany()
                         .HasForeignKey("LehrstuhlId");
 
-                    b.HasOne("ThesisWebProjekt.Models.Studiengang", "Programme")
+                    b.HasOne("ThesisWebProjekt.Models.Studiengang", "Studiengang")
                         .WithMany("Thesis")
-                        .HasForeignKey("Studiengang")
-                        .HasConstraintName("FK_dbo.Theses_dbo.Studiengang_StudiengangId");
+                        .HasForeignKey("StudiengangId");
 
                     b.Navigation("Betreuer");
 
                     b.Navigation("Lehrstuhl");
 
-                    b.Navigation("Programme");
+                    b.Navigation("Studiengang");
                 });
 
             modelBuilder.Entity("ThesisWebProjekt.Models.AppUser", b =>

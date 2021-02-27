@@ -73,7 +73,7 @@
                     @Html.DisplayNameFor(model => model.Filing)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Type)
+                    @Html.DisplayNameFor(model => model.ThesisType)
                 </th>
 
                 <th>
@@ -113,7 +113,7 @@
                 </td>
 
                 <td>
-                    @Html.DisplayFor(modelItem => item.Type)
+                    @Html.DisplayFor(modelItem => item.ThesisType)
                 </td>
 
                 <td>
@@ -124,9 +124,9 @@
                 </td>
 
                 <td class="text-center" style="vertical-align: middle">
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn"><span class=" glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit</a>
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn"><span class=" glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Details</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn"><span class=" glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn"><span class=" glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn"><span class=" glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn"><span class=" glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Delete</a>
                 </td>
             </tr>
             }

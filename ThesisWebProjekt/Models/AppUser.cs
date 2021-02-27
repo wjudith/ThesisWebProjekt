@@ -7,6 +7,7 @@ namespace ThesisWebProjekt.Models
     public class AppUser : IdentityUser
     {
        
+       
         public string Password { get; set; } 
         // 1:n Beziehung zw. Lehrstuhl und AppUser
         public Lehrstuhl Lehrstuhl { get; set; }

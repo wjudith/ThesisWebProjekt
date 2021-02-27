@@ -224,21 +224,14 @@ namespace ThesisWebProjekt.Migrations
                     NoveltyWt = table.Column<int>(type: "int", nullable: true),
                     RichnessWt = table.Column<int>(type: "int", nullable: true),
                     Grade = table.Column<double>(type: "float", nullable: false),
-                    Studiengang = table.Column<int>(type: "int", nullable: true),
                     LastModified = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    SupervisorId = table.Column<int>(type: "int", nullable: true),
+                    StudiengangId = table.Column<int>(type: "int", nullable: true),
                     BetreuerId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     LehrstuhlId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Thesis", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_dbo.Theses_dbo.Studiengang_StudiengangId",
-                        column: x => x.Studiengang,
-                        principalTable: "Studiengang",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Thesis_AspNetUsers_BetreuerId",
                         column: x => x.BetreuerId,
@@ -249,6 +242,12 @@ namespace ThesisWebProjekt.Migrations
                         name: "FK_Thesis_Lehrstuehle_LehrstuhlId",
                         column: x => x.LehrstuhlId,
                         principalTable: "Lehrstuehle",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Thesis_Studiengang_StudiengangId",
+                        column: x => x.StudiengangId,
+                        principalTable: "Studiengang",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -276,13 +275,13 @@ namespace ThesisWebProjekt.Migrations
 
             migrationBuilder.InsertData(
                 table: "Thesis",
-                columns: new[] { "Id", "Bachelor", "BetreuerId", "ContentVal", "ContentWt", "Description", "DifficultyVal", "DifficultyWt", "Evaluation", "Filing", "Grade", "LastModified", "LayoutVal", "LayoutWt", "LehrstuhlId", "LiteratureVal", "LiteratureWt", "Master", "NoveltyVal", "NoveltyWt", "Registration", "RichnessVal", "RichnessWt", "Status", "Strengths", "StructureVal", "StructureWt", "StudentEmail", "StudentId", "StudentName", "Studiengang", "StyleVal", "StyleWt", "Summary", "SupervisorId", "Title", "Type", "Weaknesses" },
+                columns: new[] { "Id", "Bachelor", "BetreuerId", "ContentVal", "ContentWt", "Description", "DifficultyVal", "DifficultyWt", "Evaluation", "Filing", "Grade", "LastModified", "LayoutVal", "LayoutWt", "LehrstuhlId", "LiteratureVal", "LiteratureWt", "Master", "NoveltyVal", "NoveltyWt", "Registration", "RichnessVal", "RichnessWt", "Status", "Strengths", "StructureVal", "StructureWt", "StudentEmail", "StudentId", "StudentName", "StudiengangId", "StyleVal", "StyleWt", "Summary", "Title", "Type", "Weaknesses" },
                 values: new object[,]
                 {
-                    { 4, false, null, null, 30, "...", null, 5, null, null, 1.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 15, null, null, 10, true, null, 10, null, null, 10, 0, null, null, 10, null, null, "Jannis", 1, null, 10, null, null, "Masterthema 2", null, null },
-                    { 3, false, null, null, 30, "...", null, 5, null, null, 3.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 15, null, null, 10, true, null, 10, null, null, 10, 0, null, null, 10, null, null, null, 2, null, 10, null, null, "Masterthema 1", null, null },
-                    { 2, true, null, null, 30, "...", null, 5, null, null, 0.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 15, null, null, 10, false, null, 10, null, null, 10, 3, null, null, 10, null, null, null, 3, null, 10, null, null, "Bachelorthema 2", null, null },
-                    { 1, true, null, null, 30, "...", null, 5, null, null, 0.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 15, null, null, 10, false, null, 10, null, null, 10, 0, null, null, 10, null, null, null, 4, null, 10, null, null, "Bachelorthema 1", null, null }
+                    { 1, true, null, null, 30, "...", null, 5, null, null, 0.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 15, null, null, 10, false, null, 10, null, null, 10, 0, null, null, 10, null, null, null, null, null, 10, null, "Bachelorthema 1", null, null },
+                    { 2, true, null, null, 30, "...", null, 5, null, null, 0.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 15, null, null, 10, false, null, 10, null, null, 10, 3, null, null, 10, null, null, null, null, null, 10, null, "Bachelorthema 2", null, null },
+                    { 3, false, null, null, 30, "...", null, 5, null, null, 3.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 15, null, null, 10, true, null, 10, null, null, 10, 0, null, null, 10, null, null, null, null, null, 10, null, "Masterthema 1", null, null },
+                    { 4, false, null, null, 30, "...", null, 5, null, null, 1.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 15, null, null, 10, true, null, 10, null, null, 10, 0, null, null, 10, null, null, "Jannis", null, null, 10, null, "Masterthema 2", null, null }
                 });
 
             migrationBuilder.CreateIndex(
@@ -340,9 +339,9 @@ namespace ThesisWebProjekt.Migrations
                 column: "LehrstuhlId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Thesis_Studiengang",
+                name: "IX_Thesis_StudiengangId",
                 table: "Thesis",
-                column: "Studiengang");
+                column: "StudiengangId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -369,10 +368,10 @@ namespace ThesisWebProjekt.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Studiengang");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Studiengang");
 
             migrationBuilder.DropTable(
                 name: "Lehrstuehle");
