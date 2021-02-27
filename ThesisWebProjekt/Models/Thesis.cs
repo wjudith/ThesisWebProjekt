@@ -132,7 +132,6 @@ namespace ThesisWebProjekt.Models
 
 
         [Display(Name = "Note")]
-        [DisplayFormat(DataFormatString = "{0:F1}", ApplyFormatInEditMode = true)]
         public double Grade { get; set; }
 
 

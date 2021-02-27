@@ -264,12 +264,33 @@ namespace ThesisWebProjekt.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Studiengang");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Bachelor Wirtschaftsinformatik"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Bachelor Wirtschaftswissenschaften"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Master Wirtschaftswissenschaften"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Master Wirtschaftsinformatik"
+                        });
                 });
 
             modelBuilder.Entity("ThesisWebProjekt.Models.Thesis", b =>
@@ -418,6 +439,7 @@ namespace ThesisWebProjekt.Migrations
                             RichnessWt = 10,
                             Status = 0,
                             StructureWt = 10,
+                            Studiengang = 4,
                             StyleWt = 10,
                             Title = "Bachelorthema 1"
                         },
@@ -437,6 +459,7 @@ namespace ThesisWebProjekt.Migrations
                             RichnessWt = 10,
                             Status = 3,
                             StructureWt = 10,
+                            Studiengang = 3,
                             StyleWt = 10,
                             Title = "Bachelorthema 2"
                         },
@@ -456,6 +479,7 @@ namespace ThesisWebProjekt.Migrations
                             RichnessWt = 10,
                             Status = 0,
                             StructureWt = 10,
+                            Studiengang = 2,
                             StyleWt = 10,
                             Title = "Masterthema 1"
                         },
@@ -476,6 +500,7 @@ namespace ThesisWebProjekt.Migrations
                             Status = 0,
                             StructureWt = 10,
                             StudentName = "Jannis",
+                            Studiengang = 1,
                             StyleWt = 10,
                             Title = "Masterthema 2"
                         });

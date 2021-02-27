@@ -11,7 +11,7 @@ namespace ThesisWebProjekt.Models
         }
 
 
-        //jeder Lehrstuhl hat ID , Name , und Verweis auf jew. Appuser
+        //jeder Lehrstuhl hat ID , Name , und Verweis auf jew. Appuser (Lehrstuhl ist quasi das geforderte Supervisor Model)
         public int Id { get; set; }
         [Required]
         [Display(Name = "Name")]

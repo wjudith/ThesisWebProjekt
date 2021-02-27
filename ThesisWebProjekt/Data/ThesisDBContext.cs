@@ -16,13 +16,11 @@ namespace ThesisWebProjekt.Data
         }
        
 
-        public virtual DbSet<ThesisWebProjekt.Models.Studiengang> Studiengang { get; set; }
+        public DbSet<Studiengang> Studiengang { get; set; }
 
-        public DbSet<ThesisWebProjekt.Models.Lehrstuhl> Lehrstuehle { get; set; }
+        public DbSet<Lehrstuhl> Lehrstuehle { get; set; }
 
-
-
-        public virtual DbSet<Models.Thesis> Thesis { get; set; }
+        public DbSet<Thesis> Thesis { get; set; }
 
 
 
@@ -33,17 +31,23 @@ namespace ThesisWebProjekt.Data
 
 
             var x = modelBuilder.Entity<Thesis>().HasData(
-                new Models.Thesis() { Id = 1, Title = "Bachelorthema 1", Description = "...", Bachelor = true, Master = false, Status = Status.Free },
-                new Models.Thesis() { Id = 2, Title = "Bachelorthema 2", Description = "...", Bachelor = true, Master = false, Status = Status.Filed },
-                new Models.Thesis() { Id = 3, Title = "Masterthema 1", Description = "...", Bachelor = false, Master = true, Status = Status.Free, Grade = 3},
-                new Models.Thesis() { Id = 4, Title = "Masterthema 2", Description = "...", Bachelor = false, Master = true, Status = Status.Free, StudentName = "Jannis", Grade = 1 } );
+                new Models.Thesis() { Id = 1, Title = "Bachelorthema 1", Description = "...", Bachelor = true, Master = false, Status = Status.Free, Studiengang = 4 },
+                new Models.Thesis() { Id = 2, Title = "Bachelorthema 2", Description = "...", Bachelor = true, Master = false, Status = Status.Filed, Studiengang = 3 },
+                new Models.Thesis() { Id = 3, Title = "Masterthema 1", Description = "...", Bachelor = false, Master = true, Status = Status.Free, Grade = 3, Studiengang = 2},
+                new Models.Thesis() { Id = 4, Title = "Masterthema 2", Description = "...", Bachelor = false, Master = true, Status = Status.Free, StudentName = "Jannis", Grade = 1, Studiengang = 1 } );
 
-            var l = modelBuilder.Entity<Lehrstuhl>().HasData(
+            var y = modelBuilder.Entity<Lehrstuhl>().HasData(
                 new Lehrstuhl() { Id = 10, Name = "BWL 10" },
                 new Lehrstuhl() { Id = 11, Name = "BWL 11" },
-                new Lehrstuhl() { Id = 12, Name = "BWL 12" }
+                new Lehrstuhl() { Id = 12, Name = "BWL 12" }     
                 );
-          
+
+            var z = modelBuilder.Entity<Studiengang>().HasData(
+                new Studiengang() { Id = 1, Name = "Bachelor Wirtschaftsinformatik" },
+                new Studiengang() { Id = 2, Name = "Bachelor Wirtschaftswissenschaften" },
+                new Studiengang() { Id = 3, Name = "Master Wirtschaftswissenschaften" },
+                new Studiengang() { Id = 4, Name = "Master Wirtschaftsinformatik" }
+                );
 
             modelBuilder.Entity<Models.Thesis>(entity =>
             {
