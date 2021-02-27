@@ -135,15 +135,12 @@ namespace ThesisWebProjekt.Models
         public double Grade { get; set; }
 
 
-
-
-        [Display(Name = "Studiengang")]
-        public int? Studiengang { get; set; }
-        [Required]
         [Display(Name = "Zuletzt geändert")]
         public DateTime LastModified { get; set; }
-        public int? SupervisorId { get; set; }
-        public Studiengang Programme { get; set; }
+
+        [Display(Name = "Studiengang")]
+        public Studiengang Studiengang { get; set; }
+
         [Display(Name = "Betreuer/-in")]
         public AppUser Betreuer { get; set; }
 

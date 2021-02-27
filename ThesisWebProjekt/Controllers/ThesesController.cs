@@ -80,7 +80,7 @@ namespace ThesisWebProjekt.Controllers
 
 
            
-            var thesisDBContext = _context.Thesis.Include(t => t.Programme).Include(t => t.Betreuer).Include(t => t.Lehrstuhl);
+            var thesisDBContext = _context.Thesis.Include(t => t.Betreuer).Include(t => t.Lehrstuhl);
             int PageTotal = await query.CountAsync();
 
 
@@ -111,7 +111,7 @@ namespace ThesisWebProjekt.Controllers
             }
 
             var thesis = await _context.Thesis
-                .Include(t => t.Programme)
+                .Include(t => t.Studiengang)
                 .Include(t => t.Betreuer)
                 .Include(t => t.Lehrstuhl)
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -139,12 +139,23 @@ namespace ThesisWebProjekt.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create([Bind("Id,Title,Description,Bachelor,Master,Status,StudentName,StudentEmail,StudentId,Registration,Filing,Type,Summary,Strengths,Weaknesses,Evaluation,ContentVal,LayoutVal,StructureVal,StyleVal,LiteratureVal,DifficultyVal,NoveltyVal,RichnessVal,ContentWt,LayoutWt,StructureWt,StyleWt,LiteratureWt,DifficultyWt,NoveltyWt,RichnessWt,Grade,ProgrammeId,LastModified")] Thesis thesis)
+        public async Task<IActionResult> Create([Bind("Id,Title,Description,Bachelor,Master,Status,StudentName,StudentEmail,StudentId,Registration,Filing,Type,Summary,Strengths,Weaknesses,Evaluation,ContentVal,LayoutVal,StructureVal,StyleVal,LiteratureVal,DifficultyVal,NoveltyVal,RichnessVal,ContentWt,LayoutWt,StructureWt,StyleWt,LiteratureWt,DifficultyWt,NoveltyWt,RichnessWt,Grade,StudiengangId,LastModified,Studiengang,Lehrstuhl")] Thesis thesis)
         {
             if (ModelState.IsValid)
             {
                 thesis.Betreuer = await _usermgr.GetUserAsync(User);
                 thesis.LastModified = DateTime.Now;
+
+                //Verknüpfung Auswahlfeld Bachelor/Master mit dem Feld Type
+                if (thesis.Bachelor == true)
+                {
+                    thesis.Type = ThesisType.Bachelor;
+                }
+                if (thesis.Master == true)
+                {
+                    thesis.Type = ThesisType.Master;
+                }
+
                 _context.Add(thesis);
 
                 await _context.SaveChangesAsync();
@@ -178,7 +189,7 @@ namespace ThesisWebProjekt.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,Bachelor,Master,Status,StudentName,StudentEmail,StudentId,Registration,Filing,Type,Summary,Strengths,Weaknesses,Evaluation,ContentVal,LayoutVal,StructureVal,StyleVal,LiteratureVal,DifficultyVal,NoveltyVal,RichnessVal,ContentWt,LayoutWt,StructureWt,StyleWt,LiteratureWt,DifficultyWt,NoveltyWt,RichnessWt,Grade,ProgrammeId,LehrstuhlId")] Thesis thesis)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,Bachelor,Master,Status,StudentName,StudentEmail,StudentId,Registration,Filing,Type,Summary,Strengths,Weaknesses,Evaluation,ContentVal,LayoutVal,StructureVal,StyleVal,LiteratureVal,DifficultyVal,NoveltyVal,RichnessVal,ContentWt,LayoutWt,StructureWt,StyleWt,LiteratureWt,DifficultyWt,NoveltyWt,RichnessWt,Grade,StudiengangId,LehrstuhlId")] Thesis thesis)
         {
             if (id != thesis.Id)
             {
@@ -235,7 +246,7 @@ namespace ThesisWebProjekt.Controllers
             }
 
             var thesis = await _context.Thesis
-                .Include(t => t.Programme)
+                .Include(t => t.Studiengang)
                 .Include(t => t.Betreuer)
                 .Include(t => t.Lehrstuhl)
                 .FirstOrDefaultAsync(m => m.Id == id);

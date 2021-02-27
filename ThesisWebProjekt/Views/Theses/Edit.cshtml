@@ -104,30 +104,18 @@
                     <span asp-validation-for="Type" class="text-danger"></span>
                 </div>
             </div>
-         </div>
-            <div class="form-group">
-              
-                <p>
-                    <label>Anmeldedatum</label>
-                    <input id="date" />
-                    <span asp-validation-for="Registration" class="text-danger"></span>
-                </p>
-
-            </div>
-
-
-
-
-            <div class="form-group">
-           
-                <p>
-                    <label>Abgabedatum</label>
-                    <input id="date1" />
-                    <span asp-validation-for="Filing" class="text-danger"></span>
-                </p>
-
-            </div>
         </div>
+        <div class="form-group">
+            <label asp-for="Registration" class="control-label"></label>
+            <input asp-for="Registration" class="form-control" />
+            <span asp-validation-for="Registration" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Filing" class="control-label"></label>
+            <input asp-for="Filing" class="form-control" />
+            <span asp-validation-for="Filing" class="text-danger"></span>
+        </div>
+    </div>
    
 
 

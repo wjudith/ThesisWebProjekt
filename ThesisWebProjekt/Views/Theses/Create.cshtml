@@ -36,24 +36,23 @@
                 <label asp-for="Status" class="control-label"></label>
 
                 <select name="Status" id="Status" asp-for="Status">
-                    <option value="0" id="0">0</option>
-                    <option value="1" id="1">1</option>
-                    <option value="2" id="2">2</option>
-                    <option value="3" id="3">3</option>
-                    <option value="4" id="4">4</option>
+                    <option value="0" id="0">0- Frei</option>
+                    <option value="1" id="1">1- Vorgemerkt</option>
+                    <option value="2" id="2">2- Angemeldet</option>
+                    <option value="3" id="3">3- Abgegeben</option>
+                    <option value="4" id="4">4- Bewertet</option>
                 </select>
-
                 <span asp-validation-for="Status" class="text-danger"></span>
-
             </div>
             <div class="form-group">
                 <label asp-for="Lehrstuhl" class="control-label"></label>
-                <select name="lehrstuhl" id="lehrstuhl" asp-for="Lehrstuhl">
+                <select name="Lehrstuhl" id="Lehrstuhl" asp-for="Lehrstuhl">
                     @Html.DisplayNameFor(model => model.Lehrstuhl)
-                    <option value="BWL 10" id="10">BWL 10</option>
-                    <option value="BWL 11" id="10">BWL 11</option>
-                    <option value="BWL 12" id="10">BWL 12</option>
+                    <option value="10" id="10">BWL 10</option>
+                    <option value="11" id="11">BWL 11</option>
+                    <option value="12" id="12">BWL 12</option>
                 </select>
+                <span asp-validation-for="Lehrstuhl" class="text-danger"></span>
                 <!-- nicht optimal, vllt. Lehrstühle mithilfe von Html.DropDownList auswählen?, Viewbag?  IST JETZT MIT DROPDOWNLIST!-->
             </div>
             <div class="form-group">
@@ -193,12 +192,15 @@
             </div>
             <div class="form-group">
                 <label asp-for="Studiengang" class="control-label"></label>
-                <select asp-for="Studiengang" class="form-control" asp-items="ViewBag.Studiengang">
-                    <option>Wirtschaftsinformatik</option>
-                    <option>Wirtschaftswissenschaften</option>
+                <select name="Studiengang" id="Studiengang" asp-for="Status">
+                    <option value="1" id="1">Bachelor Wirtschaftsinformatik</option>
+                    <option value="2" id="2">Bachelor Wirtschaftswissenschaften</option>
+                    <option value="3" id="3">Master Wirtschaftswissenschaften</option>
+                    <option value="4" id="4">Master Wirtschaftsinformatik</option>
                 </select>
+                <span asp-validation-for="Studiengang" class="text-danger"></span>
             </div>
-          
+ 
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -207,7 +209,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Zurück zur Liste</a>
 </div>
     }
 

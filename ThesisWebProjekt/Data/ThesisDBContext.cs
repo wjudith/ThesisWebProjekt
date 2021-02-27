@@ -31,10 +31,10 @@ namespace ThesisWebProjekt.Data
 
 
             var x = modelBuilder.Entity<Thesis>().HasData(
-                new Models.Thesis() { Id = 1, Title = "Bachelorthema 1", Description = "...", Bachelor = true, Master = false, Status = Status.Free, Studiengang = 4 },
-                new Models.Thesis() { Id = 2, Title = "Bachelorthema 2", Description = "...", Bachelor = true, Master = false, Status = Status.Filed, Studiengang = 3 },
-                new Models.Thesis() { Id = 3, Title = "Masterthema 1", Description = "...", Bachelor = false, Master = true, Status = Status.Free, Grade = 3, Studiengang = 2},
-                new Models.Thesis() { Id = 4, Title = "Masterthema 2", Description = "...", Bachelor = false, Master = true, Status = Status.Free, StudentName = "Jannis", Grade = 1, Studiengang = 1 } );
+                new Models.Thesis() { Id = 1, Title = "Bachelorthema 1", Description = "...", Bachelor = true, Master = false, Status = Status.Free },
+                new Models.Thesis() { Id = 2, Title = "Bachelorthema 2", Description = "...", Bachelor = true, Master = false, Status = Status.Filed},
+                new Models.Thesis() { Id = 3, Title = "Masterthema 1", Description = "...", Bachelor = false, Master = true, Status = Status.Free, Grade = 3},
+                new Models.Thesis() { Id = 4, Title = "Masterthema 2", Description = "...", Bachelor = false, Master = true, Status = Status.Free, StudentName = "Jannis", Grade = 1} );
 
             var y = modelBuilder.Entity<Lehrstuhl>().HasData(
                 new Lehrstuhl() { Id = 10, Name = "BWL 10" },
@@ -49,18 +49,18 @@ namespace ThesisWebProjekt.Data
                 new Studiengang() { Id = 4, Name = "Master Wirtschaftsinformatik" }
                 );
 
-            modelBuilder.Entity<Models.Thesis>(entity =>
+  /*          modelBuilder.Entity<Models.Thesis>(entity =>
             {
                
 
-                entity.HasOne(d => d.Programme)
+                entity.HasOne(d => d.Studiengang)
                     .WithMany(p => p.Thesis)
                     .HasForeignKey(d => d.Studiengang)
                     .HasConstraintName("FK_dbo.Theses_dbo.Studiengang_StudiengangId");
 
 
  
-            });
+            }); */
         }
         
     }
