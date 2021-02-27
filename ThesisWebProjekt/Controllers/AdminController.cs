@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,6 +9,10 @@ using ThesisWebProjekt.Models;
 namespace ThesisWebProjekt.Controllers
 {
     [Authorize(Roles = "Admin")]
+
+
+
+    //übernommen aus Link 3
     public class AdminController : Controller
     {
         private UserManager<AppUser> userManager;
@@ -44,6 +47,11 @@ namespace ThesisWebProjekt.Controllers
         }
     
 
+
+
+
+
+        //Erstellen
     public ViewResult Create() => View();
 
         [HttpPost]
@@ -130,6 +138,9 @@ namespace ThesisWebProjekt.Controllers
                 ModelState.AddModelError("", "User Not Found");
             return View("Index", userManager.Users);
         }
+
+
+        //Erstellen der Manage Funktion (übernommen aus Link 3 Adding Users To Roles)
 
         public async Task<IActionResult> Manage(string userId)
         {

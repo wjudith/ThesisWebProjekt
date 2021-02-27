@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ThesisWebProjekt.Models
 {
+  
+    //übernommen nur Supervisor gelöscht
     public enum Status
     {
         [Display(Name = "Frei")]
@@ -28,6 +27,8 @@ namespace ThesisWebProjekt.Models
         Master = 1
     }
 
+
+   
     public enum Grade
     {
         [Display(Name = "1 (sehr gut)")]
@@ -68,8 +69,12 @@ namespace ThesisWebProjekt.Models
         public bool Bachelor { get; set; }
         [Display(Name = "Master")]
         public bool Master { get; set; }
+
+
         [Display(Name = "Status")]
         public Status Status { get; set; }
+
+
         [Display(Name = "Name")]
         public string StudentName { get; set; }
         [Display(Name = "E-Mail")]
@@ -77,10 +82,10 @@ namespace ThesisWebProjekt.Models
         [Display(Name = "Matrikelnummer")]
         public string StudentId { get; set; }
         [Display(Name = "Anmeldedatum")]
-        [DisplayFormat(DataFormatString = "{0:d}")]
+        
         public DateTime? Registration { get; set; }
         [Display(Name = "Abgabedatum")]
-        [DisplayFormat(DataFormatString = "{0:d}")]
+        
         public DateTime? Filing { get; set; }
         [Display(Name = "Thesistyp")]
         public ThesisType? Type { get; set; }
@@ -124,17 +129,28 @@ namespace ThesisWebProjekt.Models
         public int? NoveltyWt { get; set; } = 10;
         [Display(Name = "Themenerfassung Gewichtung")]
         public int? RichnessWt { get; set; } = 10;
+
+
         [Display(Name = "Note")]
-        [DisplayFormat(DataFormatString = "{0:F1}")]
-        public double? Grade { get; set; }
+        [DisplayFormat(DataFormatString = "{0:F1}", ApplyFormatInEditMode = true)]
+        public double Grade { get; set; }
+
+
+
+
         [Display(Name = "Studiengang")]
-        public int? ProgrammeId { get; set; }
+        public int? Studiengang { get; set; }
         [Required]
         [Display(Name = "Zuletzt geändert")]
         public DateTime LastModified { get; set; }
         public int? SupervisorId { get; set; }
-        public Programme Programme { get; set; }
+        public Studiengang Programme { get; set; }
         [Display(Name = "Betreuer/-in")]
         public AppUser Betreuer { get; set; }
+
+        [Display(Name = "Lehrstuhl")]
+        public Lehrstuhl Lehrstuhl { get; set; }
+
+
     }
 }

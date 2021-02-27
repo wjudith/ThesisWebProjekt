@@ -15,9 +15,9 @@ namespace ThesisWebProjekt.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.2");
+                .HasAnnotation("ProductVersion", "5.0.3")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -51,7 +51,7 @@ namespace ThesisWebProjekt.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -75,7 +75,7 @@ namespace ThesisWebProjekt.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -228,7 +228,7 @@ namespace ThesisWebProjekt.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -256,12 +256,12 @@ namespace ThesisWebProjekt.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ThesisWebProjekt.Models.Programme", b =>
+            modelBuilder.Entity("ThesisWebProjekt.Models.Studiengang", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -269,7 +269,7 @@ namespace ThesisWebProjekt.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Programme");
+                    b.ToTable("Studiengang");
                 });
 
             modelBuilder.Entity("ThesisWebProjekt.Models.Thesis", b =>
@@ -277,7 +277,7 @@ namespace ThesisWebProjekt.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("Bachelor")
                         .HasColumnType("bit");
@@ -306,7 +306,7 @@ namespace ThesisWebProjekt.Migrations
                     b.Property<DateTime?>("Filing")
                         .HasColumnType("datetime2");
 
-                    b.Property<double?>("Grade")
+                    b.Property<double>("Grade")
                         .HasColumnType("float");
 
                     b.Property<DateTime>("LastModified")
@@ -316,6 +316,9 @@ namespace ThesisWebProjekt.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("LayoutWt")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("LehrstuhlId")
                         .HasColumnType("int");
 
                     b.Property<int?>("LiteratureVal")
@@ -331,9 +334,6 @@ namespace ThesisWebProjekt.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("NoveltyWt")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ProgrammeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("Registration")
@@ -366,6 +366,9 @@ namespace ThesisWebProjekt.Migrations
                     b.Property<string>("StudentName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("Studiengang")
+                        .HasColumnType("int");
+
                     b.Property<int?>("StyleVal")
                         .HasColumnType("int");
 
@@ -392,7 +395,9 @@ namespace ThesisWebProjekt.Migrations
 
                     b.HasIndex("BetreuerId");
 
-                    b.HasIndex("ProgrammeId");
+                    b.HasIndex("LehrstuhlId");
+
+                    b.HasIndex("Studiengang");
 
                     b.ToTable("Thesis");
 
@@ -404,6 +409,7 @@ namespace ThesisWebProjekt.Migrations
                             ContentWt = 30,
                             Description = "...",
                             DifficultyWt = 5,
+                            Grade = 0.0,
                             LastModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LayoutWt = 15,
                             LiteratureWt = 10,
@@ -422,6 +428,7 @@ namespace ThesisWebProjekt.Migrations
                             ContentWt = 30,
                             Description = "...",
                             DifficultyWt = 5,
+                            Grade = 0.0,
                             LastModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LayoutWt = 15,
                             LiteratureWt = 10,
@@ -440,6 +447,7 @@ namespace ThesisWebProjekt.Migrations
                             ContentWt = 30,
                             Description = "...",
                             DifficultyWt = 5,
+                            Grade = 3.0,
                             LastModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LayoutWt = 15,
                             LiteratureWt = 10,
@@ -450,6 +458,26 @@ namespace ThesisWebProjekt.Migrations
                             StructureWt = 10,
                             StyleWt = 10,
                             Title = "Masterthema 1"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Bachelor = false,
+                            ContentWt = 30,
+                            Description = "...",
+                            DifficultyWt = 5,
+                            Grade = 1.0,
+                            LastModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LayoutWt = 15,
+                            LiteratureWt = 10,
+                            Master = true,
+                            NoveltyWt = 10,
+                            RichnessWt = 10,
+                            Status = 0,
+                            StructureWt = 10,
+                            StudentName = "Jannis",
+                            StyleWt = 10,
+                            Title = "Masterthema 2"
                         });
                 });
 
@@ -519,12 +547,18 @@ namespace ThesisWebProjekt.Migrations
                         .WithMany("Theses")
                         .HasForeignKey("BetreuerId");
 
-                    b.HasOne("ThesisWebProjekt.Models.Programme", "Programme")
+                    b.HasOne("ThesisWebProjekt.Models.Lehrstuhl", "Lehrstuhl")
+                        .WithMany()
+                        .HasForeignKey("LehrstuhlId");
+
+                    b.HasOne("ThesisWebProjekt.Models.Studiengang", "Programme")
                         .WithMany("Thesis")
-                        .HasForeignKey("ProgrammeId")
-                        .HasConstraintName("FK_dbo.Theses_dbo.Programmes_ProgrammeId");
+                        .HasForeignKey("Studiengang")
+                        .HasConstraintName("FK_dbo.Theses_dbo.Studiengang_StudiengangId");
 
                     b.Navigation("Betreuer");
+
+                    b.Navigation("Lehrstuhl");
 
                     b.Navigation("Programme");
                 });
@@ -539,7 +573,7 @@ namespace ThesisWebProjekt.Migrations
                     b.Navigation("AppUsers");
                 });
 
-            modelBuilder.Entity("ThesisWebProjekt.Models.Programme", b =>
+            modelBuilder.Entity("ThesisWebProjekt.Models.Studiengang", b =>
                 {
                     b.Navigation("Thesis");
                 });

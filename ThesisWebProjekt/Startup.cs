@@ -1,17 +1,16 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ThesisWebProjekt.Data;
 using ThesisWebProjekt.Models;
 using Microsoft.AspNetCore.Identity;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace ThesisWebProjekt
 {
@@ -29,23 +28,29 @@ namespace ThesisWebProjekt
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
+            //
+
 
             services.AddDbContext<ThesisDBContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ThesisDBContext")));
 
- /*           //hier eigentlich die zwei DB kombinieren?
+ /*           //hier eigentlich die zwei DB kombinieren? (in Aufgabenstellung steht alten DB String verwenden also würde ich sagen nein!)
             services.AddDbContext<ThesisIdentityContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ThesisIdentityContextConnection"))); */
-
+ // aus VL Rollen 
             services.AddIdentity<AppUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ThesisDBContext>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
 
+           
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<AppUser> um, RoleManager<IdentityRole> rm)
+
+
         {
             if (env.IsDevelopment())
             {
@@ -72,6 +77,20 @@ namespace ThesisWebProjekt
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
+
+            //Client Validierung um eine deutsche Lokalisierung erweitert (in Thesis Index.cshtml auch ganz oben!)
+
+            var defaultCulture = new CultureInfo("de-DE");
+            var localizationOptions = new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(defaultCulture),
+                SupportedCultures = new List<CultureInfo> { defaultCulture },
+                SupportedUICultures = new List<CultureInfo> { defaultCulture }
+            };
+            app.UseRequestLocalization(localizationOptions);
+
+
 
             //Wie in der Vorlesung standardmäßig ein Administrator zum Testen
             CreateUserRoles(um, rm).Wait();
@@ -109,4 +128,5 @@ namespace ThesisWebProjekt
             return;
         }
     }
+
 }

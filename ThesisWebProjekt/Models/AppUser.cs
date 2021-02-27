@@ -1,29 +1,15 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
-using ThesisWebProjekt.Models;
 
 namespace ThesisWebProjekt.Models
 {
-    // Add profile data for application users by adding properties to the AppUser class
+    //eigene Klasse Appuser basiert aer auf IdentityUser!
     public class AppUser : IdentityUser
     {
-        /*       public int Id { get; set; }
-
-               [Required]
-               public string UserName { get; set; }
-
-               [Required]
-               [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "E-mail is not valid")]
-               public string Email { get; set; } 
-
-        [Required] */
+       
         public string Password { get; set; } 
-
+        // 1:n Beziehung zw. Lehrstuhl und AppUser
         public Lehrstuhl Lehrstuhl { get; set; }
-        public IEnumerable<Thesis> Theses { get; set; }
+        public ICollection<Thesis> Theses { get; set; }
     }
 }
