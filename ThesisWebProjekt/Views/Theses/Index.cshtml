@@ -66,24 +66,22 @@
                 <th>
                     @Html.DisplayNameFor(model => model.StudentId)
                 </th>
-
+                <th>
+                    @Html.DisplayNameFor(model => model.Registration)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Filing)
+                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Type)
                 </th>
 
                 <th>
-                    @Html.DisplayNameFor(model => model.Grade)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.Betreuer)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.LastModified)
+                    @Html.DisplayNameFor(model => model.Lehrstuhl)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Studiengang)
-                </th>
-                <th> @Html.DisplayNameFor(model => model.Lehrstuhl)</th>
             </tr>
         </thead>
         <tbody>
@@ -107,30 +105,27 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.StudentId)
                 </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Registration)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Filing)
+                </td>
 
                 <td>
                     @Html.DisplayFor(modelItem => item.Type)
                 </td>
 
                 <td>
-                    @Html.DisplayFor(modelItem => item.Grade)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Betreuer)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.LastModified)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Studiengang)
-                </td>
-                <td>
-                    @Html.DisplayNameFor(model => model.Lehrstuhl)
+                    @Html.DisplayFor(model => item.Lehrstuhl)
                 </td>
 
                 <td class="text-center" style="vertical-align: middle">
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn"><span class=" glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit</a> 
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn"><span class=" glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Details</a> 
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn"><span class=" glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn"><span class=" glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Details</a>
                     <a asp-action="Delete" asp-route-id="@item.Id" class="btn"><span class=" glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Delete</a>
                 </td>
             </tr>
