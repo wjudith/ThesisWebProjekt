@@ -10,7 +10,7 @@ using ThesisWebProjekt.Data;
 namespace ThesisWebProjekt.Migrations
 {
     [DbContext(typeof(ThesisDBContext))]
-    [Migration("20210227100546_initial")]
+    [Migration("20210227140148_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
