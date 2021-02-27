@@ -30,7 +30,7 @@
                 @{int i = 1;}
                 @foreach (var item in Model)
                 {
-                    @if ((item.Status.Equals(Status.Free))|(item.Status.Equals(Status.Reserved)))
+                    @if ((item.Status.Equals(Status.Free)) | (item.Status.Equals(Status.Reserved)))
                     {
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingOne">
@@ -59,6 +59,7 @@
                                         </tbody>
                                     </table>
 
+
                                 </div>
                             </div>
                         </div>
@@ -68,12 +69,17 @@
             </div>
 
         </main>
+        <div>
+            <a asp-action="Index" class="btn btn-default">Zurück zur Liste</a>
+        </div>
     </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2021 - ThesisWebProjekt
         </div>
+
+        
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
