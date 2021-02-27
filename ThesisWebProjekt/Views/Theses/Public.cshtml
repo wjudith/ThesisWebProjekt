@@ -30,38 +30,40 @@
                 @{int i = 1;}
                 @foreach (var item in Model)
                 {
+                    @if ((item.Status.Equals(Status.Free))|(item.Status.Equals(Status.Reserved)))
+                    {
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse_@i">
+                                        @Html.DisplayFor(modelItem => item.Title) (@Html.DisplayFor(modelItem => item.Type))
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse_@i" class="panel-collapse collapse" role="tabpanel">
+                                <div class="panel-body">
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <th>Beschreibung</th>
+                                                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Status</th>
+                                                <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Betreuer/-in</th>
+                                                <td><a href="mailto:@Html.DisplayFor(modelItem => item.Betreuer.Email)">E-Mail</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
 
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingOne">
-                            <h4 class="panel-title">
-                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse_@i">
-                                    @Html.DisplayFor(modelItem => item.Title) (@Html.DisplayFor(modelItem => item.Type))
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapse_@i" class="panel-collapse collapse" role="tabpanel">
-                            <div class="panel-body">
-                                <table class="table table-bordered">
-                                    <tbody>
-                                        <tr>
-                                            <th>Beschreibung</th>
-                                            <td>@Html.DisplayFor(modelItem => item.Description)</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Status</th>
-                                            <td>@Html.DisplayFor(modelItem => item.Status)</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Betreuer/-in</th>
-                                            <td><a href="mailto:@Html.DisplayFor(modelItem => item.Betreuer.Email)">E-Mail</a></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    i++;
+                        i++;
+                    }
                 }
             </div>
 

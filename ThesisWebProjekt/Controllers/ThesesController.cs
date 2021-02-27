@@ -277,8 +277,8 @@ namespace ThesisWebProjekt.Controllers
 
         public async Task<IActionResult> Public()
         {
-            //hier Auswahl, sodass nur freie und reservierte Themen angezeigt werden?
             //je nach Lehrstuhlauswahl Rückgabe?
+
             IQueryable<Thesis> query = _context.Thesis;
             return View(await query.ToListAsync());
         }
