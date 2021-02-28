@@ -142,7 +142,7 @@ namespace ThesisWebProjekt.Models
         [Display(Name = "Studiengang")]
         public virtual Studiengang Studiengang { get; set; }
 
-
+        public string BetreuerId { get; set; } 
         [Display(Name = "Betreuer/-in")]
         public virtual AppUser Betreuer { get; set; }
 
