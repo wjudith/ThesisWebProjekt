@@ -67,12 +67,13 @@
             </div>
             <div class="form-group">
                 <label asp-for="Lehrstuhl" class="control-label"></label>
-                <select name="lehrstuhl" id="lehrstuhl" asp-for="Lehrstuhl">
-                    @Html.DisplayNameFor(model => model.Lehrstuhl)
-                    <option value="BWL 10" id="10">BWL 10</option>
-                    <option value="BWL 11" id="10">BWL 11</option>
-                    <option value="BWL 12" id="10">BWL 12</option>
+                <select name="LehrstuhlId" id="LehrstuhlId" asp-for="LehrstuhlId">
+                    @Html.DisplayNameFor(model => model.LehrstuhlId)
+                    <option value="10" id="10">BWL 10</option>
+                    <option value="11" id="11">BWL 11</option>
+                    <option value="12" id="12">BWL 12</option>
                 </select>
+                <span asp-validation-for="LehrstuhlId" class="text-danger"></span>
                 <!-- nicht optimal, vllt. Lehrstühle mithilfe von Html.DropDownList auswählen?, Viewbag?  IST JETZT MIT DROPDOWNLIST!-->
             </div>
 

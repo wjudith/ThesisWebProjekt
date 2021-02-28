@@ -142,10 +142,12 @@ namespace ThesisWebProjekt.Models
         public Studiengang Studiengang { get; set; }
 
         [Display(Name = "Betreuer/-in")]
-        public AppUser Betreuer { get; set; }
+        public virtual AppUser Betreuer { get; set; }
 
+
+        public int LehrstuhlId { get; set; }
         [Display(Name = "Lehrstuhl")]
-        public Lehrstuhl Lehrstuhl { get; set; }
+        public virtual Lehrstuhl Lehrstuhl { get; set; }
 
     }
 }
