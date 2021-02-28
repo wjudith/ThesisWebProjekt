@@ -138,8 +138,10 @@ namespace ThesisWebProjekt.Models
         [Display(Name = "Zuletzt geändert")]
         public DateTime LastModified { get; set; }
 
+        public int StudiengangId { get; set; }
         [Display(Name = "Studiengang")]
-        public Studiengang Studiengang { get; set; }
+        public virtual Studiengang Studiengang { get; set; }
+
 
         [Display(Name = "Betreuer/-in")]
         public virtual AppUser Betreuer { get; set; }

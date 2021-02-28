@@ -187,19 +187,14 @@
                 <span asp-validation-for="RichnessWt" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Grade" class="control-label"></label>
-                <input asp-for="Grade" class="form-control" />
-                <span asp-validation-for="Grade" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Studiengang" class="control-label"></label>
-                <select name="Studiengang" id="Studiengang" asp-for="Status">
+                <select name="StudiengangId" id="StudiengangId" asp-for="StudiengangId">
                     <option value="1" id="1">Bachelor Wirtschaftsinformatik</option>
                     <option value="2" id="2">Bachelor Wirtschaftswissenschaften</option>
                     <option value="3" id="3">Master Wirtschaftswissenschaften</option>
                     <option value="4" id="4">Master Wirtschaftsinformatik</option>
                 </select>
-                <span asp-validation-for="Studiengang" class="text-danger"></span>
+                <span asp-validation-for="StudiengangId" class="text-danger"></span>
             </div>
 
             <div class="form-group">
