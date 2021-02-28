@@ -76,6 +76,16 @@
                 <span asp-validation-for="LehrstuhlId" class="text-danger"></span>
                 <!-- nicht optimal, vllt. Lehrstühle mithilfe von Html.DropDownList auswählen?, Viewbag?  IST JETZT MIT DROPDOWNLIST!-->
             </div>
+            <div class="form-group">
+                <label asp-for="Studiengang" class="control-label"></label>
+                <select name="StudiengangId" id="StudiengangId" asp-for="StudiengangId">
+                    <option value="1" id="1">Bachelor Wirtschaftsinformatik</option>
+                    <option value="2" id="2">Bachelor Wirtschaftswissenschaften</option>
+                    <option value="3" id="3">Master Wirtschaftswissenschaften</option>
+                    <option value="4" id="4">Master Wirtschaftsinformatik</option>
+                </select>
+                <span asp-validation-for="StudiengangId" class="text-danger"></span>
+            </div>
 
             <div class="form-group">
                 <label asp-for="StudentName" class="col-md-2 control-label"></label>
