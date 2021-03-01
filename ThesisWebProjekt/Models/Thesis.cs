@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ThesisWebProjekt.Models
 {
@@ -137,6 +139,13 @@ namespace ThesisWebProjekt.Models
         public int LehrstuhlId { get; set; }
         [Display(Name = "Lehrstuhl")]
         public virtual Lehrstuhl Lehrstuhl { get; set; }
+
+
+        //Upload
+        [Display(Name = "Upload Thesis")]
+        [NotMapped]
+        public IFormFile CoverPhoto { get; set; }
+
 
 
         // public UserRolesViewModel UserRolesViewModel { get; set; }
