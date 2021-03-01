@@ -206,6 +206,7 @@ namespace ThesisWebProjekt.Controllers
                 {
                     try
                     {
+                        thesis.Betreuer = await _usermgr.GetUserAsync(User);
                         thesis.LastModified = DateTime.Now;
                         _context.Update(thesis);
                         await _context.SaveChangesAsync();
