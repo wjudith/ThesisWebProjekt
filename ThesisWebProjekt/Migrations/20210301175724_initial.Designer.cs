@@ -10,8 +10,8 @@ using ThesisWebProjekt.Data;
 namespace ThesisWebProjekt.Migrations
 {
     [DbContext(typeof(ThesisDBContext))]
-    [Migration("20210228201316_new")]
-    partial class @new
+    [Migration("20210301175724_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -238,7 +238,7 @@ namespace ThesisWebProjekt.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Lehrstuehle");
+                    b.ToTable("Lehrstuhl");
 
                     b.HasData(
                         new
@@ -420,6 +420,170 @@ namespace ThesisWebProjekt.Migrations
                     b.HasIndex("StudiengangId");
 
                     b.ToTable("Thesis");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Bachelor = true,
+                            ContentWt = 30,
+                            Description = "...",
+                            DifficultyWt = 5,
+                            Filing = new DateTime(2021, 1, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Grade = 1.0,
+                            LastModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LayoutWt = 15,
+                            LehrstuhlId = 10,
+                            LiteratureWt = 10,
+                            Master = false,
+                            NoveltyWt = 10,
+                            Registration = new DateTime(2020, 9, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RichnessWt = 10,
+                            Status = 0,
+                            StructureWt = 10,
+                            StudentEmail = "judith@studmail.de",
+                            StudentId = "2845776",
+                            StudentName = "Judith",
+                            StudiengangId = 1,
+                            StyleWt = 10,
+                            Title = "Bachelorthema 1",
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Bachelor = true,
+                            ContentWt = 30,
+                            Description = "...",
+                            DifficultyWt = 5,
+                            Filing = new DateTime(2021, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Grade = 4.0,
+                            LastModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LayoutWt = 15,
+                            LehrstuhlId = 10,
+                            LiteratureWt = 10,
+                            Master = false,
+                            NoveltyWt = 10,
+                            Registration = new DateTime(2020, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RichnessWt = 10,
+                            Status = 3,
+                            StructureWt = 10,
+                            StudentEmail = "jürgen@studmail.de",
+                            StudentId = "2343546",
+                            StudentName = "Jürgen",
+                            StudiengangId = 2,
+                            StyleWt = 10,
+                            Title = "Bachelorthema 2",
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Bachelor = false,
+                            ContentWt = 30,
+                            Description = "...",
+                            DifficultyWt = 5,
+                            Filing = new DateTime(2021, 4, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Grade = 5.0,
+                            LastModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LayoutWt = 15,
+                            LehrstuhlId = 11,
+                            LiteratureWt = 10,
+                            Master = true,
+                            NoveltyWt = 10,
+                            Registration = new DateTime(2020, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RichnessWt = 10,
+                            Status = 0,
+                            StructureWt = 10,
+                            StudentEmail = "helga@studmail.de",
+                            StudentId = "2785476",
+                            StudentName = "Helga",
+                            StudiengangId = 3,
+                            StyleWt = 10,
+                            Title = "Masterthema 1",
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Bachelor = false,
+                            ContentWt = 30,
+                            Description = "...",
+                            DifficultyWt = 5,
+                            Filing = new DateTime(2021, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Grade = 2.0,
+                            LastModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LayoutWt = 15,
+                            LehrstuhlId = 12,
+                            LiteratureWt = 10,
+                            Master = true,
+                            NoveltyWt = 10,
+                            Registration = new DateTime(2021, 1, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RichnessWt = 10,
+                            Status = 1,
+                            StructureWt = 10,
+                            StudentEmail = "jannis@studmail.de",
+                            StudentId = "2345698",
+                            StudentName = "Jannis",
+                            StudiengangId = 4,
+                            StyleWt = 10,
+                            Title = "Masterthema 2",
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Bachelor = false,
+                            ContentWt = 30,
+                            Description = "...",
+                            DifficultyWt = 5,
+                            Filing = new DateTime(2021, 4, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Grade = 5.0,
+                            LastModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LayoutWt = 15,
+                            LehrstuhlId = 11,
+                            LiteratureWt = 10,
+                            Master = true,
+                            NoveltyWt = 10,
+                            Registration = new DateTime(2020, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RichnessWt = 10,
+                            Status = 2,
+                            StructureWt = 10,
+                            StudentEmail = "Paul@studmail.de",
+                            StudentId = "5645474",
+                            StudentName = "Paul",
+                            StudiengangId = 3,
+                            StyleWt = 10,
+                            Title = "Masterthema 3",
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Bachelor = false,
+                            ContentWt = 30,
+                            Description = "...",
+                            DifficultyWt = 5,
+                            Filing = new DateTime(2021, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Grade = 2.0,
+                            LastModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LayoutWt = 15,
+                            LehrstuhlId = 12,
+                            LiteratureWt = 10,
+                            Master = true,
+                            NoveltyWt = 10,
+                            Registration = new DateTime(2021, 1, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RichnessWt = 10,
+                            Status = 4,
+                            StructureWt = 10,
+                            StudentEmail = "Hanna@studmail.de",
+                            StudentId = "2652148",
+                            StudentName = "Hanna",
+                            StudiengangId = 1,
+                            StyleWt = 10,
+                            Title = "Masterthema 4",
+                            Type = 1
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

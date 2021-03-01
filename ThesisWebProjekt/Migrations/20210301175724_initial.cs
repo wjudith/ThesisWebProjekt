@@ -22,7 +22,7 @@ namespace ThesisWebProjekt.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Lehrstuehle",
+                name: "Lehrstuhl",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -31,7 +31,7 @@ namespace ThesisWebProjekt.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Lehrstuehle", x => x.Id);
+                    table.PrimaryKey("PK_Lehrstuhl", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -94,9 +94,9 @@ namespace ThesisWebProjekt.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetUsers_Lehrstuehle_LehrstuhlId",
+                        name: "FK_AspNetUsers_Lehrstuhl_LehrstuhlId",
                         column: x => x.LehrstuhlId,
-                        principalTable: "Lehrstuehle",
+                        principalTable: "Lehrstuhl",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -225,9 +225,9 @@ namespace ThesisWebProjekt.Migrations
                     RichnessWt = table.Column<int>(type: "int", nullable: true),
                     Grade = table.Column<double>(type: "float", nullable: false),
                     LastModified = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    StudiengangId = table.Column<int>(type: "int", nullable: true),
+                    StudiengangId = table.Column<int>(type: "int", nullable: false),
                     BetreuerId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    LehrstuhlId = table.Column<int>(type: "int", nullable: true)
+                    LehrstuhlId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -239,21 +239,21 @@ namespace ThesisWebProjekt.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Thesis_Lehrstuehle_LehrstuhlId",
+                        name: "FK_Thesis_Lehrstuhl_LehrstuhlId",
                         column: x => x.LehrstuhlId,
-                        principalTable: "Lehrstuehle",
+                        principalTable: "Lehrstuhl",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Thesis_Studiengang_StudiengangId",
                         column: x => x.StudiengangId,
                         principalTable: "Studiengang",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
-                table: "Lehrstuehle",
+                table: "Lehrstuhl",
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
@@ -278,10 +278,12 @@ namespace ThesisWebProjekt.Migrations
                 columns: new[] { "Id", "Bachelor", "BetreuerId", "ContentVal", "ContentWt", "Description", "DifficultyVal", "DifficultyWt", "Evaluation", "Filing", "Grade", "LastModified", "LayoutVal", "LayoutWt", "LehrstuhlId", "LiteratureVal", "LiteratureWt", "Master", "NoveltyVal", "NoveltyWt", "Registration", "RichnessVal", "RichnessWt", "Status", "Strengths", "StructureVal", "StructureWt", "StudentEmail", "StudentId", "StudentName", "StudiengangId", "StyleVal", "StyleWt", "Summary", "Title", "Type", "Weaknesses" },
                 values: new object[,]
                 {
-                    { 1, true, null, null, 30, "...", null, 5, null, null, 0.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 15, null, null, 10, false, null, 10, null, null, 10, 0, null, null, 10, null, null, null, null, null, 10, null, "Bachelorthema 1", null, null },
-                    { 2, true, null, null, 30, "...", null, 5, null, null, 0.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 15, null, null, 10, false, null, 10, null, null, 10, 3, null, null, 10, null, null, null, null, null, 10, null, "Bachelorthema 2", null, null },
-                    { 3, false, null, null, 30, "...", null, 5, null, null, 3.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 15, null, null, 10, true, null, 10, null, null, 10, 0, null, null, 10, null, null, null, null, null, 10, null, "Masterthema 1", null, null },
-                    { 4, false, null, null, 30, "...", null, 5, null, null, 1.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 15, null, null, 10, true, null, 10, null, null, 10, 0, null, null, 10, null, null, "Jannis", null, null, 10, null, "Masterthema 2", null, null }
+                    { 1, true, null, null, 30, "...", null, 5, null, new DateTime(2021, 1, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 1.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 15, 10, null, 10, false, null, 10, new DateTime(2020, 9, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 10, 0, null, null, 10, "judith@studmail.de", "2845776", "Judith", 1, null, 10, null, "Bachelorthema 1", 0, null },
+                    { 6, false, null, null, 30, "...", null, 5, null, new DateTime(2021, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 2.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 15, 12, null, 10, true, null, 10, new DateTime(2021, 1, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 10, 4, null, null, 10, "Hanna@studmail.de", "2652148", "Hanna", 1, null, 10, null, "Masterthema 4", 1, null },
+                    { 2, true, null, null, 30, "...", null, 5, null, new DateTime(2021, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 4.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 15, 10, null, 10, false, null, 10, new DateTime(2020, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 10, 3, null, null, 10, "jürgen@studmail.de", "2343546", "Jürgen", 2, null, 10, null, "Bachelorthema 2", 0, null },
+                    { 3, false, null, null, 30, "...", null, 5, null, new DateTime(2021, 4, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), 5.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 15, 11, null, 10, true, null, 10, new DateTime(2020, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 10, 0, null, null, 10, "helga@studmail.de", "2785476", "Helga", 3, null, 10, null, "Masterthema 1", 1, null },
+                    { 5, false, null, null, 30, "...", null, 5, null, new DateTime(2021, 4, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), 5.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 15, 11, null, 10, true, null, 10, new DateTime(2020, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 10, 2, null, null, 10, "Paul@studmail.de", "5645474", "Paul", 3, null, 10, null, "Masterthema 3", 1, null },
+                    { 4, false, null, null, 30, "...", null, 5, null, new DateTime(2021, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 2.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 15, 12, null, 10, true, null, 10, new DateTime(2021, 1, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 10, 1, null, null, 10, "jannis@studmail.de", "2345698", "Jannis", 4, null, 10, null, "Masterthema 2", 1, null }
                 });
 
             migrationBuilder.CreateIndex(
@@ -374,7 +376,7 @@ namespace ThesisWebProjekt.Migrations
                 name: "Studiengang");
 
             migrationBuilder.DropTable(
-                name: "Lehrstuehle");
+                name: "Lehrstuhl");
         }
     }
 }

@@ -43,20 +43,7 @@ namespace ThesisWebProjekt.Models
         Insufficient = 5
     }
 
-    public enum GradeFine
-    {
-        [Display(Name = "1,0")]
-        VeryGood = 1,
-        [Display(Name = "2 (gut)")]
-        Good = 2,
-        [Display(Name = "3 (befriedigend)")]
-        Satisfying = 3,
-        [Display(Name = "4 (ausreichend)")]
-        Sufficient = 4,
-        [Display(Name = "5 (mangelhaft)")]
-        Insufficient = 5
-    }
-
+  
     public partial class Thesis
     {
         public int Id { get; set; }

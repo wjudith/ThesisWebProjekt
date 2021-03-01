@@ -9,7 +9,7 @@
 }
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de-de">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -66,9 +66,10 @@
                                                     <td>@Html.DisplayFor(modelItem => item.Status)</td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Betreuer/-in</th>
-                                                    <td><a href="mailto:@Html.DisplayFor(modelItem => item.Betreuer.Email)">E-Mail</a></td>
+                                                    <th>Betreuer/-in Email</th>
+                                                    <td><a href="mailto:@Html.DisplayFor(modelItem => item.Betreuer.Email)">Email</a></td>
                                                 </tr>
+                                              
                                             </tbody>
                                         </table>
 
