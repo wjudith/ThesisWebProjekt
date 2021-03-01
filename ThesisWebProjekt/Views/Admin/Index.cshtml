@@ -1,10 +1,10 @@
 ﻿@using ThesisWebProjekt.Models
 @model List<UserRolesViewModel>
 
-<h1 class="bg-info text-white">Nutzerverwaltung</h1>
+<h1 >Nutzerverwaltung</h1>
 
 
-<a asp-action="Create" class="btn btn-secondary">Neuen User hinzufügen</a>
+<a asp-action="Create" class="btn btn-primary">Neuen User hinzufügen</a>
 <a asp-controller="RoleManager" asp-action="Index" class="btn btn-secondary">Rollen verwalten</a>
 
 
@@ -20,10 +20,10 @@
     <td>@user.Email</td>
     <td>@string.Join(", ", user.Roles.ToList())</td>
     <td>
-        <a class="btn btn-sm btn-primary" asp-controller="Admin" asp-action="Manage" asp-route-userId="@user.UserId">Rollen bearbeiten</a>
+        <a class="btn btn-sm btn-secondary" asp-controller="Admin" asp-action="Manage" asp-route-userId="@user.UserId">Rollen bearbeiten</a>
     </td>
     <td>
-        <a class="btn btn-sm btn-primary" asp-action="Update" asp-route-id="@user.UserId">
+        <a class="btn btn-sm btn-secondary" asp-action="Update" asp-route-id="@user.UserId">
             User bearbeiten
         </a>
     </td>

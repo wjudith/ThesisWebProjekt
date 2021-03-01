@@ -25,26 +25,47 @@
             </div>
             <div class="form-group">
                 <label asp-for="Status" class="control-label"></label>
-
-                <select name="Status" id="Status" asp-for="Status">
-                    <option value="0" id="0">0- Frei</option>
-                    <option value="1" id="1">1- Vorgemerkt</option>
-                    <option value="2" id="2">2- Angemeldet</option>
-                    <option value="3" id="3">3- Abgegeben</option>
-                    <option value="4" id="4">4- Bewertet</option>
-                </select>
-                <span asp-validation-for="Status" class="text-danger"></span>
+                <div class="col-md-10">
+                    <select name="Status" id="Status" asp-for="Status" class="col-md-10 form-control">
+                        <option value="0" id="0">0- Frei</option>
+                        <option value="1" id="1">1- Vorgemerkt</option>
+                        <option value="2" id="2">2- Angemeldet</option>
+                        <option value="3" id="3">3- Abgegeben</option>
+                        <option value="4" id="4">4- Bewertet</option>
+                    </select>
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="Lehrstuhl" class="control-label"></label>
-                <select name="LehrstuhlId" id="LehrstuhlId" asp-for="LehrstuhlId">
-                    @Html.DisplayNameFor(model => model.LehrstuhlId)
-                    <option value="10" id="10">BWL 10</option>
-                    <option value="11" id="11">BWL 11</option>
-                    <option value="12" id="12">BWL 12</option>
-                </select>
-                <span asp-validation-for="LehrstuhlId" class="text-danger"></span>
-                <!-- nicht optimal, vllt. Lehrstühle mithilfe von Html.DropDownList auswählen?, Viewbag?  IST JETZT MIT DROPDOWNLIST!-->
+                <div class="col-md-10">
+                    <select name="LehrstuhlId" id="LehrstuhlId" asp-for="LehrstuhlId" class="col-md-10 form-control">
+                        @Html.DisplayNameFor(model => model.LehrstuhlId)
+                        <option value="10" id="10">BWL 10</option>
+                        <option value="11" id="11">BWL 11</option>
+                        <option value="12" id="12">BWL 12</option>
+                    </select>
+                    <span asp-validation-for="LehrstuhlId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Type" class="control-label"></label>
+                <div class="col-md-10">
+                    <select asp-for="Type" class="col-md-10 form-control" asp-items="Html.GetEnumSelectList(typeof(ThesisType))" style='width: 50%;'></select>
+                    <span asp-validation-for="Type" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Studiengang" class="control-label"></label>
+                <div class="col-md-12">
+                    <select name="StudiengangId" id="StudiengangId" asp-for="StudiengangId" class="col-md-12 form-control">
+                        <option value="1" id="1">Bachelor Wirtschaftsinformatik</option>
+                        <option value="2" id="2">Bachelor Wirtschaftswissenschaften</option>
+                        <option value="3" id="3">Master Wirtschaftswissenschaften</option>
+                        <option value="4" id="4">Master Wirtschaftsinformatik</option>
+                    </select>
+                    <span asp-validation-for="StudiengangId" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="StudentName" class="control-label"></label>
@@ -70,13 +91,6 @@
                 <label asp-for="Filing" class="control-label"></label>
                 <input asp-for="Filing" class="form-control" />
                 <span asp-validation-for="Filing" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Type" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <select asp-for="Type" class="col-md-10 form-control" asp-items="Html.GetEnumSelectList(typeof(ThesisType))" style='width: 50%;'></select>
-                    <span asp-validation-for="Type" class="text-danger"></span>
-                </div>
             </div>
             <div class="form-group">
                 <label asp-for="Summary" class="control-label"></label>
@@ -178,17 +192,6 @@
                 <input asp-for="RichnessWt" class="form-control" />
                 <span asp-validation-for="RichnessWt" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Studiengang" class="control-label"></label>
-                <select name="StudiengangId" id="StudiengangId" asp-for="StudiengangId">
-                    <option value="1" id="1">Bachelor Wirtschaftsinformatik</option>
-                    <option value="2" id="2">Bachelor Wirtschaftswissenschaften</option>
-                    <option value="3" id="3">Master Wirtschaftswissenschaften</option>
-                    <option value="4" id="4">Master Wirtschaftsinformatik</option>
-                </select>
-                <span asp-validation-for="StudiengangId" class="text-danger"></span>
-            </div>
-
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

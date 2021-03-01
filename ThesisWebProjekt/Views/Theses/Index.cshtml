@@ -44,7 +44,7 @@ Klappt so leider nicht !
 
     <form id="Form" asp-action="Index" method="get">
         <p>
-            <a class="btn btn-primary" asp-action="Create"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;&nbsp;Create new</a>
+            <a class="btn btn-primary" asp-action="Create"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;&nbsp;Neue Thesis hinzufügen</a>
 
 
             <input type="button" value="Reset" class="btn btn-default pull-right" onclick="resetForm()" />
@@ -147,9 +147,9 @@ Klappt so leider nicht !
                     </td>
 
                     <td class="text-center" style="vertical-align: middle">
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn"><span class=" glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Edit</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn"><span class=" glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Bearbeiten</a>
                         <a asp-action="Details" asp-route-id="@item.Id" class="btn"><span class=" glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Details</a>
-                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn"><span class=" glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Delete</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn"><span class=" glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Löschen</a>
                     </td>
                 </tr>
             }
@@ -169,10 +169,10 @@ Klappt so leider nicht !
             <div class="col-xs-4">
                 <div class="text-center">
                     <ul class="pagination" style="margin: 0">
-                        <li class="@(ViewBag.Page <= 1 ? "disabled" : null)"><a href="#" onclick="document.getElementById('Page').value = 1; document.getElementById('Form').submit()">First</a></li>
-                        <li class="@(ViewBag.Page <= 1 ? "disabled" : null)"><a href="#" onclick="document.getElementById('Page').value--; document.getElementById('Form').submit()">Prev</a></li>
-                        <li class="@(ViewBag.Page >= ViewBag.PageTotal ? "disabled" : null)"><a href="#" onclick="document.getElementById('Page').value++;document.getElementById('Form').submit()">Next</a></li>
-                        <li class="@(ViewBag.Page >= ViewBag.PageTotal ? "disabled" : null)"><a href="#" onclick="document.getElementById('Page').value = @ViewBag.PageTotal; document.getElementById('Form').submit()">Last</a></li>
+                        <li class="@(ViewBag.Page <= 1 ? "disabled" : null)"><a href="#" onclick="document.getElementById('Page').value = 1; document.getElementById('Form').submit() " class="btn btn-light">First</a></li>
+                        <li class="@(ViewBag.Page <= 1 ? "disabled" : null)"><a href="#" onclick="document.getElementById('Page').value--; document.getElementById('Form').submit()" class="btn btn-light">Prev</a></li>
+                        <li class="@(ViewBag.Page >= ViewBag.PageTotal ? "disabled" : null)"><a href="#" onclick="document.getElementById('Page').value++;document.getElementById('Form').submit()" class="btn btn-light">Next</a></li>
+                        <li class="@(ViewBag.Page >= ViewBag.PageTotal ? "disabled" : null)"><a href="#" onclick="document.getElementById('Page').value = @ViewBag.PageTotal; document.getElementById('Form').submit()" class="btn btn-light">Last</a></li>
                     </ul>
                 </div>
             </div>

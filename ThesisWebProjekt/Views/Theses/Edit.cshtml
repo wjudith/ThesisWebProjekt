@@ -62,48 +62,50 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="Lehrstuhl" class="control-label"></label>
-                    <select name="LehrstuhlId" id="LehrstuhlId" asp-for="LehrstuhlId">
-                        @Html.DisplayNameFor(model => model.LehrstuhlId)
-                        <option value="10" id="10">BWL 10</option>
-                        <option value="11" id="11">BWL 11</option>
-                        <option value="12" id="12">BWL 12</option>
-                    </select>
-                    <span asp-validation-for="LehrstuhlId" class="text-danger"></span>
-                    <!-- nicht optimal, vllt. Lehrstühle mithilfe von Html.DropDownList auswählen?, Viewbag?  IST JETZT MIT DROPDOWNLIST!-->
+                    <div class="col-md-10">
+                        <select name="LehrstuhlId" id="LehrstuhlId" asp-for="LehrstuhlId" class="col-md-10 form-control">
+                            @Html.DisplayNameFor(model => model.LehrstuhlId)
+                            <option value="10" id="10">BWL 10</option>
+                            <option value="11" id="11">BWL 11</option>
+                            <option value="12" id="12">BWL 12</option>
+                        </select>
+                        <span asp-validation-for="LehrstuhlId" class="text-danger"></span>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label asp-for="Studiengang" class="control-label"></label>
-                    <select name="StudiengangId" id="StudiengangId" asp-for="StudiengangId">
-                        <option value="1" id="1">Bachelor Wirtschaftsinformatik</option>
-                        <option value="2" id="2">Bachelor Wirtschaftswissenschaften</option>
-                        <option value="3" id="3">Master Wirtschaftswissenschaften</option>
-                        <option value="4" id="4">Master Wirtschaftsinformatik</option>
-                    </select>
-                    <span asp-validation-for="StudiengangId" class="text-danger"></span>
+                    <div class="col-md-12">
+                        <select name="StudiengangId" id="StudiengangId" asp-for="StudiengangId" class="col-md-10 form-control">
+                            <option value="1" id="1">Bachelor Wirtschaftsinformatik</option>
+                            <option value="2" id="2">Bachelor Wirtschaftswissenschaften</option>
+                            <option value="3" id="3">Master Wirtschaftswissenschaften</option>
+                            <option value="4" id="4">Master Wirtschaftsinformatik</option>
+                        </select>
+                        <span asp-validation-for="StudiengangId" class="text-danger"></span>
+                    </div>
                 </div>
-
-            <div class="form-group">
-                <label asp-for="StudentName" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input asp-for="StudentName" class="form-control" style='width: 50%;' />
-                    <span asp-validation-for="StudentName" class="text-danger"></span>
+                <div class="form-group">
+                    <label asp-for="StudentName" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="StudentName" class="form-control" style='width: 50%;' />
+                        <span asp-validation-for="StudentName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="StudentId" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="StudentId" class="form-control" style='width: 25%;' />
+                        <span asp-validation-for="StudentId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="StudentEmail" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="StudentEmail" class="form-control" style='width: 50%;' />
+                        <span asp-validation-for="StudentEmail" class="text-danger"></span>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <label asp-for="StudentId" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input asp-for="StudentId" class="form-control" style='width: 25%;' />
-                    <span asp-validation-for="StudentId" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="StudentEmail" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input asp-for="StudentEmail" class="form-control" style='width: 50%;' />
-                    <span asp-validation-for="StudentEmail" class="text-danger"></span>
-                </div>
-            </div>
-        </div>
         <div class="form-group">
             <label asp-for="Registration" class="control-label"></label>
             <input asp-for="Registration" class="form-control" />
@@ -262,13 +264,7 @@
         </div>
         <div class="panel panel-default">
             <div class="panel-heading"></div>
-            <div class="panel-body">
-                <div class="form-group">
-                    <label asp-for="Betreuer" class="control-label"></label>
-                    <select asp-for="BetreuerId" class="form-control" asp-items="@ViewBag.BetreuerId"></select>
-                    <span asp-validation-for="BetreuerId" class="text-danger"></span>
-                </div>
-               
+            <div class="panel-body">               
         </div>
 
 
