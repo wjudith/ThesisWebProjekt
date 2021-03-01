@@ -139,7 +139,7 @@ Klappt so leider nicht !
                     </td>
 
                     <td>
-                        @{ string UName = "test@gmail.com";}
+                        @{ string UName = "";}
                         @foreach (var thes in ViewBag.Thesen)
                         {
                             if (item.BetreuerId == thes.BetreuerId) { UName = thes.Betreuer.UserName; break; }

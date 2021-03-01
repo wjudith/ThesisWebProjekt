@@ -68,7 +68,7 @@
                                                 <tr>
                                                     <th>Betreuer/-in</th>
                                                     <td>
-                                                        @{ string email = "test@gmail.com";}
+                                                        @{ string email = "";}
                                                         @foreach (var thes in ViewBag.Thesen)
                                                         {
                                                             if (item.BetreuerId == thes.BetreuerId) { email = thes.Betreuer.Email; break; }
