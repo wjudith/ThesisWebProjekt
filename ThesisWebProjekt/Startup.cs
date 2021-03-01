@@ -104,6 +104,12 @@ namespace ThesisWebProjekt
                 user = new AppUser() { Email = "testadmin@gmail.com", UserName = "testadmin@gmail.com" };
                 await um.CreateAsync(user, "_PasswortAdmin321");
             }
+            AppUser user2 = await um.FindByNameAsync("jannisbrzk@gmx.de");
+            if (user == null)
+            {
+                user = new AppUser() { Email = "jannisbrzk@gmx.de", UserName = "Jannis" };
+                await um.CreateAsync(user, "Hallole1!");
+            }
 
             IdentityRole role = await rm.FindByNameAsync("Admin");
             if (role == null)

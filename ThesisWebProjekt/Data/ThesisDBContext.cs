@@ -60,9 +60,10 @@ namespace ThesisWebProjekt.Data
 
         public DbSet<Studiengang> Studiengang { get; set; }
 
-        public DbSet<Lehrstuhl> Lehrstuehle { get; set; }
+        public DbSet<Lehrstuhl> Lehrstuhl { get; set; }
 
         public DbSet<Thesis> Thesis { get; set; }
+        public DbSet<AppUser> Betreuer { get; set; }
 
 
     }

@@ -54,18 +54,10 @@ namespace ThesisWebProjekt.Controllers
         public async Task<IActionResult> Index(string Search, string Filter, SortCriteria Sort = SortCriteria.Status, int Page = 1, int PageSize = 10)
         {
             IQueryable<Thesis> query = _context.Thesis;
-            query = (Search != null) ? query.Where(m => (m.StudentName.Contains(Search))) : query;
-            query = (Filter != null) ? query.Where(m => (m.BetreuerId == Filter)) : query;
+           
+            query = (Filter != null) ? query.Where(m => m.Lehrstuhl.Name == Filter) : query;
 
-            if (Search != null)
-            {
-                query = query.Where(m => (m.Title.Contains(Search) || m.StudentName.Contains(Search) || m.Studiengang.Name.Contains(Search) || m.Studiengang.Name.Contains(Search)));
-            }
-            if (Filter != null)
-            {
-                query = query.Where(m => ((m.Studiengang.Id + " " + m.Studiengang.Name) == Filter));
-            }
-
+          
 
             switch (Sort)
             {
@@ -91,14 +83,14 @@ namespace ThesisWebProjekt.Controllers
 
 
            
-            var thesisDBContext = _context.Thesis.Include(t => t.Betreuer).Include(t => t.Lehrstuhl);
+         //   var thesisDBContext = _context.Thesis.Include(t => t.Betreuer).Include(t => t.Lehrstuhl);
             int PageTotal = ((await query.CountAsync()) + PageSize - 1) / PageSize;
             Page = (Page > PageTotal) ? PageTotal : Page;
             Page = (Page < 1) ? 1 : Page;
 
             ViewBag.Search = Search;
             ViewBag.Filter = Filter;
-            ViewBag.FilterValues = new SelectList(await _context.Thesis.Select(m => m.Betreuer).Distinct().ToListAsync());
+            ViewBag.FilterValues = new SelectList(await _context.Thesis.Select(m => m.Lehrstuhl).Distinct().ToListAsync());
             ViewBag.Sort = Sort;
             ViewBag.Page = Page;
             ViewBag.PageTotal = PageTotal;
