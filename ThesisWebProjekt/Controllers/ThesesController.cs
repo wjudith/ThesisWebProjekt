@@ -90,7 +90,7 @@ namespace ThesisWebProjekt.Controllers
 
             ViewBag.Search = Search;
             ViewBag.Filter = Filter;
-            ViewBag.FilterValues = new SelectList(await _context.Thesis.Select(m => m.Lehrstuhl).Distinct().ToListAsync());
+            ViewBag.FilterValues = new SelectList(await _context.Thesis.Select(m => m.Lehrstuhl.Name).Distinct().ToListAsync());
             ViewBag.Sort = Sort;
             ViewBag.Page = Page;
             ViewBag.PageTotal = PageTotal;
