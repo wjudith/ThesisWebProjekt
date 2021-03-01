@@ -23,16 +23,6 @@
                 <textarea asp-for="Description" class="form-control" rows="5"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Bachelor" /> @Html.DisplayNameFor(model => model.Bachelor)
-                </label>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Master" /> @Html.DisplayNameFor(model => model.Master)
-                </label>
-            </div>
             <div class="form-group">
                 <label asp-for="Status" class="control-label"></label>
 
@@ -82,9 +72,11 @@
                 <span asp-validation-for="Filing" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Type" class="control-label"></label>
-                <input asp-for="Type" class="form-control" />
-                <span asp-validation-for="Type" class="text-danger"></span>
+                <label asp-for="Type" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <select asp-for="Type" class="col-md-10 form-control" asp-items="Html.GetEnumSelectList(typeof(ThesisType))" style='width: 50%;'></select>
+                    <span asp-validation-for="Type" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="Summary" class="control-label"></label>

@@ -3,10 +3,10 @@
 @{
     ViewData["Title"] = "Details";
 }
-
+    
 <h1>Details</h1>
 
-<div>
+<div id="PrintBereich">
     <hr />
     <h4>Thema</h4>
     <dl class="row">
@@ -220,6 +220,20 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Thesis bearbeiten</a> |
+    <a asp-action="Index">Zurück zur Thesisliste</a> |
+    <a class="btn btn-primary" onclick="printDiv('PrintBereich');return false;">Gutachten drucken</a>
 </div>
+
+<script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+</script>
