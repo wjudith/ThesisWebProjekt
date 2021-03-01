@@ -26,7 +26,7 @@ namespace ThesisWebProjekt.Data
 
 
             var x = modelBuilder.Entity<Thesis>().HasData(
-                     new Models.Thesis() { Id = 1, Title = "Bachelorthema 1", Description = "...", Bachelor = true, Master = false, Type = ThesisType.Bachelor, Status = Status.Free, StudentName = "Judith", Grade = 1, StudentEmail = "judithw@studmail.de", StudentId = "2845776", LehrstuhlId = 10, StudiengangId = 1 },
+                     new Models.Thesis() { Id = 1, Title = "Bachelorthema 1", Description = "...", Bachelor = true, Master = false, Type = ThesisType.Bachelor, Status = Status.Free, StudentName = "Judith", Grade = 1, StudentEmail = "judithw@studmail.de", StudentId = "2845776", LehrstuhlId = 10, StudiengangId = 1  },
                      new Models.Thesis() { Id = 2, Title = "Bachelorthema 2", Description = "...", Bachelor = true, Master = false, Type = ThesisType.Bachelor, Status = Status.Filed, StudentName = "Jürgen", Grade = 4, StudentEmail = "jürgen@studmail.de", StudentId = "2343546", LehrstuhlId = 10, StudiengangId = 2 },
                      new Models.Thesis() { Id = 3, Title = "Masterthema 1", Description = "...", Bachelor = false, Master = true, Type = ThesisType.Master, Status = Status.Free, StudentName = "Helga", Grade = 5, StudentEmail = "helga@studmail.de", StudentId = "2785476", LehrstuhlId = 11, StudiengangId = 3 },
                      new Models.Thesis() { Id = 4, Title = "Masterthema 2", Description = "...", Bachelor = false, Master = true, Type = ThesisType.Master, Status = Status.Free, StudentName = "Jannis", Grade = 2, StudentEmail = "jannisbrzk@studmail.de", StudentId = "2345676", LehrstuhlId = 11, StudiengangId = 4 });

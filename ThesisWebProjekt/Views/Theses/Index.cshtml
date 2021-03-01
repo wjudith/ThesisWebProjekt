@@ -1,4 +1,4 @@
-﻿@System.Globalization.CultureInfo.CurrentUICulture
+﻿
 @model IEnumerable<ThesisWebProjekt.Models.Thesis>
 
 @{
@@ -41,7 +41,7 @@ Klappt so leider nicht !
 <h1>Übersicht</h1>
 
 
-
+<div>
     <form id="Form" asp-action="Index" method="get">
         <p>
             <a class="btn btn-primary" asp-action="Create"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;&nbsp;Neue Thesis hinzufügen</a>
@@ -186,4 +186,5 @@ Klappt so leider nicht !
     </div>
 
 
-</form>
+    </form>
+</div>
