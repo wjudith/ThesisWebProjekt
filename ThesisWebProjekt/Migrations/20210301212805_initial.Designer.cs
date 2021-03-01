@@ -10,7 +10,7 @@ using ThesisWebProjekt.Data;
 namespace ThesisWebProjekt.Migrations
 {
     [DbContext(typeof(ThesisDBContext))]
-    [Migration("20210301175724_initial")]
+    [Migration("20210301212805_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -429,21 +429,16 @@ namespace ThesisWebProjekt.Migrations
                             ContentWt = 30,
                             Description = "...",
                             DifficultyWt = 5,
-                            Filing = new DateTime(2021, 1, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Grade = 1.0,
+                            Grade = 0.0,
                             LastModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LayoutWt = 15,
                             LehrstuhlId = 10,
                             LiteratureWt = 10,
                             Master = false,
                             NoveltyWt = 10,
-                            Registration = new DateTime(2020, 9, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RichnessWt = 10,
                             Status = 0,
                             StructureWt = 10,
-                            StudentEmail = "judith@studmail.de",
-                            StudentId = "2845776",
-                            StudentName = "Judith",
                             StudiengangId = 1,
                             StyleWt = 10,
                             Title = "Bachelorthema 1",
@@ -483,21 +478,16 @@ namespace ThesisWebProjekt.Migrations
                             ContentWt = 30,
                             Description = "...",
                             DifficultyWt = 5,
-                            Filing = new DateTime(2021, 4, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Grade = 5.0,
+                            Grade = 0.0,
                             LastModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LayoutWt = 15,
                             LehrstuhlId = 11,
                             LiteratureWt = 10,
                             Master = true,
                             NoveltyWt = 10,
-                            Registration = new DateTime(2020, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RichnessWt = 10,
                             Status = 0,
                             StructureWt = 10,
-                            StudentEmail = "helga@studmail.de",
-                            StudentId = "2785476",
-                            StudentName = "Helga",
                             StudiengangId = 3,
                             StyleWt = 10,
                             Title = "Masterthema 1",
