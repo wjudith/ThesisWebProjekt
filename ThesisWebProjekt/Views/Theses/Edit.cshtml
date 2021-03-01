@@ -37,17 +37,11 @@
                 </div>
             </div>
             <div class="form-group">
-
-                <div class="col-md-10">
-                    <div class="checkbox">
-                        <label>
-                            <input asp-for="Bachelor" /> @Html.DisplayNameFor(model => model.Bachelor)
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input asp-for="Master" /> @Html.DisplayNameFor(model => model.Master)
-                        </label>
+                <div class="form-group">
+                    <label asp-for="Type" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <select asp-for="Type" class="col-md-10 form-control" asp-items="Html.GetEnumSelectList(typeof(ThesisType))" style='width: 50%;'></select>
+                        <span asp-validation-for="Type" class="text-danger"></span>
                     </div>
                 </div>
             </div>
@@ -106,13 +100,6 @@
                 <div class="col-md-10">
                     <input asp-for="StudentEmail" class="form-control" style='width: 50%;' />
                     <span asp-validation-for="StudentEmail" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="Type" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <select asp-for="Type" class="col-md-10 form-control" asp-items="Html.GetEnumSelectList(typeof(ThesisType))" style='width: 50%;'></select>
-                    <span asp-validation-for="Type" class="text-danger"></span>
                 </div>
             </div>
         </div>

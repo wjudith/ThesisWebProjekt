@@ -147,13 +147,13 @@ namespace ThesisWebProjekt.Controllers
                 thesis.LastModified = DateTime.Now;
 
                 //Verknüpfung Auswahlfeld Bachelor/Master mit dem Feld Type
-                if (thesis.Bachelor == true)
+                if (thesis.Type == ThesisType.Bachelor)
                 {
-                    thesis.Type = ThesisType.Bachelor;
+                    thesis.Bachelor = true;                    
                 }
-                if (thesis.Master == true)
+                if (thesis.Type == ThesisType.Master)
                 {
-                    thesis.Type = ThesisType.Master;
+                    thesis.Master = true;
                 }
                 _context.Add(thesis);
 
