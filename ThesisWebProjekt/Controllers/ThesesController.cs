@@ -15,7 +15,17 @@ namespace ThesisWebProjekt.Controllers
 {
    
     public class ThesesController : Controller
+
     {
+        private readonly ThesisDBContext _context;
+        private readonly UserManager<AppUser> _usermgr;
+
+        public ThesesController(ThesisDBContext context, UserManager<AppUser> usermgr)
+        {
+            _context = context;
+            _usermgr = usermgr;
+        }
+
         //Sortierung der Thesisliste!
 
         public enum SortCriteria
@@ -35,14 +45,6 @@ namespace ThesisWebProjekt.Controllers
         }
 
 
-        private readonly ThesisDBContext _context;
-        private readonly UserManager<AppUser> _usermgr;
-
-        public ThesesController(ThesisDBContext context, UserManager<AppUser> usermgr)
-        {
-            _context = context;
-            _usermgr = usermgr;
-        }
 
 
 
@@ -50,11 +52,12 @@ namespace ThesisWebProjekt.Controllers
 
 
         // GET: Theses
-     
-        public async Task<IActionResult> Index(SortCriteria Sort = SortCriteria.Status)
+
+        public async Task<IActionResult> Index(string Search, string Filter, SortCriteria Sort = SortCriteria.Status, int Page = 1, int PageSize = 10)
         {
             IQueryable<Thesis> query = _context.Thesis;
-
+            query = (Search != null) ? query.Where(m => (m.StudentName.Contains(Search))) : query;
+            query = (Filter != null) ? query.Where(m => (m.BetreuerId == Filter)) : query;
 
             switch (Sort)
             {
@@ -81,19 +84,21 @@ namespace ThesisWebProjekt.Controllers
 
            
             var thesisDBContext = _context.Thesis.Include(t => t.Betreuer).Include(t => t.Lehrstuhl);
-            int PageTotal = await query.CountAsync();
+            int PageTotal = ((await query.CountAsync()) + PageSize - 1) / PageSize;
+            Page = (Page > PageTotal) ? PageTotal : Page;
+            Page = (Page < 1) ? 1 : Page;
 
-
-
-
+            ViewBag.Search = Search;
+            ViewBag.Filter = Filter;
+            ViewBag.FilterValues = new SelectList(await _context.Thesis.Select(m => m.Betreuer).Distinct().ToListAsync());
             ViewBag.Sort = Sort;
-          
+            ViewBag.Page = Page;
             ViewBag.PageTotal = PageTotal;
-        
+            ViewBag.PageSize = PageSize;
 
-            return View(await query.ToListAsync());
-            //   return View(await thesisDBContext.ToListAsync());
+            return View(await query.Skip(PageSize * (Page - 1)).Take(PageSize).ToListAsync());
         }
+
 
 
 
