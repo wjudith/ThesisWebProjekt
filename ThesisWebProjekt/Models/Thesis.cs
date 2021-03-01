@@ -151,5 +151,12 @@ namespace ThesisWebProjekt.Models
         [Display(Name = "Lehrstuhl")]
         public virtual Lehrstuhl Lehrstuhl { get; set; }
 
+
+        // public UserRolesViewModel UserRolesViewModel { get; set; }
+        //public int UserRolesViewModelId { get; set; }
+        //       @Html.DisplayFor(modelItem => item.UserRolesViewModel.UserName)
+       // @Html.DisplayFor(modelItem => item.UserRolesViewModel.UserId) das eventu in die Index View anstatt Betreuer ID?
+       
+
     }
 }

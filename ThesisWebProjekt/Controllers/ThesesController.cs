@@ -15,7 +15,17 @@ namespace ThesisWebProjekt.Controllers
 {
    
     public class ThesesController : Controller
+
     {
+        private readonly ThesisDBContext _context;
+        private readonly UserManager<AppUser> _usermgr;
+
+        public ThesesController(ThesisDBContext context, UserManager<AppUser> usermgr)
+        {
+            _context = context;
+            _usermgr = usermgr;
+        }
+
         //Sortierung der Thesisliste!
 
         public enum SortCriteria
@@ -35,14 +45,6 @@ namespace ThesisWebProjekt.Controllers
         }
 
 
-        private readonly ThesisDBContext _context;
-        private readonly UserManager<AppUser> _usermgr;
-
-        public ThesesController(ThesisDBContext context, UserManager<AppUser> usermgr)
-        {
-            _context = context;
-            _usermgr = usermgr;
-        }
 
 
 
@@ -50,10 +52,42 @@ namespace ThesisWebProjekt.Controllers
 
 
         // GET: Theses
-     
-        public async Task<IActionResult> Index(SortCriteria Sort = SortCriteria.Status)
+
+        public async Task<IActionResult> Index()
         {
-            IQueryable<Thesis> query = _context.Thesis;
+            IQueryable<Thesis> query = _context.Thesis
+                 .Include(s => s.Studiengang);
+
+            const int PageSize = 10, Page = 1;
+
+            ViewBag.Search = null;
+            ViewBag.Sort = null;
+            ViewBag.Page = Page;
+            ViewBag.PageTotal = Page;
+            ViewBag.PageSize = PageSize;
+
+            ViewBag.FilterStudiengang = new SelectList(await _context.Thesis.Select(t => t.Studiengang.Id + " " + t.Studiengang.Name).Distinct().ToListAsync());
+            ViewBag.Filter = null;
+
+            return View(await query.OrderBy(m => m.Id).Skip(PageSize * (Page - 1)).Take(PageSize).ToListAsync());
+
+
+        }
+
+        public async Task<IActionResult> GetTheses(string Search, string Filter, SortCriteria Sort = SortCriteria.Title, int Page = 1, int PageSize = 10)
+        {
+            IQueryable<Thesis> query = _context.Thesis
+                 .Include(s => s.Studiengang);
+
+
+            if (Search != null)
+            {
+                query = query.Where(m => (m.Title.Contains(Search) || m.StudentName.Contains(Search) || m.Studiengang.Name.Contains(Search) || m.Studiengang.Name.Contains(Search)));
+            }
+            if (Filter != null)
+            {
+                query = query.Where(m => ((m.Studiengang.Id + " " + m.Studiengang.Name) == Filter));
+            }
 
 
             switch (Sort)
@@ -81,18 +115,27 @@ namespace ThesisWebProjekt.Controllers
 
            
             var thesisDBContext = _context.Thesis.Include(t => t.Betreuer).Include(t => t.Lehrstuhl);
-            int PageTotal = await query.CountAsync();
+            int PageTotal = ((await query.CountAsync()) + PageSize - 1) / PageSize;
+            Page = (Page > PageTotal) ? PageTotal : Page;
+            Page = (Page < 1) ? 1 : Page;
 
 
 
 
+            ViewBag.Search = Search;
             ViewBag.Sort = Sort;
-          
+            ViewBag.Page = Page;
             ViewBag.PageTotal = PageTotal;
-        
+            ViewBag.PageSize = PageSize;
+            ViewBag.Filter = Filter;
 
-            return View(await query.ToListAsync());
-            //   return View(await thesisDBContext.ToListAsync());
+
+
+            ViewBag.FilterStudiengang = new SelectList(await _context.Thesis.Select(t => t.Studiengang.Id + " " + t.Studiengang.Name).Distinct().ToListAsync());
+            
+
+
+            return View("Index", await query.Skip(PageSize * (Page - 1)).Take(PageSize).ToListAsync());
         }
 
 

@@ -3,133 +3,173 @@
 
 @{
     ViewData["Title"] = "Index";
+    
 }
 
-<script>
-    function resetForm() {
 
-        document.getElementById("Sort").value = null;
+    <script>
+        function resetForm() {
 
-        document.getElementById("Form").submit();
-    }
-</script>
-
-
-
-<h1>Übersicht</h1>
-
-
-
-<form id="Form" asp-action="Index" method="get">
-    <p>
-        <a class="btn btn-primary" asp-action="Create"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;&nbsp;Create new</a>
-
-
-        <input type="button" value="Reset" class="btn btn-default pull-right" onclick="resetForm()" />
-    </p>
+            document.getElementById("Search").value = null;
+            document.getElementById("Filter").value = null;
+            document.getElementById("Sort").value = null;
+            document.getElementById("Page").value = null;
+            document.getElementById("PageSize").value = null;
+            document.getElementById("Form").submit();
+        }
+    </script>
 
 
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <div class="row">
+    <h1>Übersicht</h1>
 
-                <div class="col-xs-3">
 
-                    <label class="control-label">Sortieren nach:</label>
-                    @Html.DropDownList("Sort", Html.GetEnumSelectList(typeof(ThesisWebProjekt.Controllers.ThesesController.SortCriteria)), new { id = "Sort", @class = "form-control", onchange = "document.getElementById('Form').submit()" })
 
+    <form id="Form" asp-action="Index" method="get">
+        <p>
+            <a class="btn btn-primary" asp-action="Create"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;&nbsp;Create new</a>
+
+
+            <input type="button" value="Reset" class="btn btn-default pull-right" onclick="resetForm()" />
+        </p>
+
+
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label class="control-label">Suche:</label>
+                        <input class="form-control" name="Search" id="Search" value="@ViewBag.Search" placeholder="Enter keyword" onchange="document.getElementById('Form').submit()">
+                    </div>
+                    <div class="col-xs-3">
+                        <label class="control-label">Sortieren nach:</label>
+                        @Html.DropDownList("Sort", Html.GetEnumSelectList(typeof(ThesisWebProjekt.Controllers.ThesesController.SortCriteria)), new { id = "Sort", @class = "form-control", onchange = "document.getElementById('Form').submit()" })
+                    </div>
+                    <div class="col-xs-3">
+                        <label class="control-label">Filter:</label>
+                        @Html.DropDownList("Filter", ViewBag.FilterStudiengang, "-", new { id = "Filter", @class = "form-control", onchange = "document.getElementById('Form').submit()" })
+                    </div>
                 </div>
             </div>
         </div>
-   </div>
 
 
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StudentName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StudentEmail)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StudentId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Registration)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Filing)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Type)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Betreuer)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Lehrstuhl)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
 
 
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Title)
-                </th>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StudentName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StudentEmail)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StudentId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Registration)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Filing)
+                        </td>
 
-                <th>
-                    @Html.DisplayNameFor(model => model.Status)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.StudentName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.StudentEmail)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.StudentId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Registration)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Filing)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Type)
-                </th>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Type)
+                        </td>
 
-                <th>
-                    @Html.DisplayNameFor(model => model.Betreuer)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Lehrstuhl)
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BetreuerId)
+                     
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LehrstuhlId)
+                        </td>
+
+                        <td class="text-center" style="vertical-align: middle">
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn"><span class=" glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Edit</a>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn"><span class=" glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Details</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn"><span class=" glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
 
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StudentName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StudentEmail)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StudentId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Registration)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Filing)
-                </td>
+        <div class="panel-footer">
+            <div class="form-inline row">
+                <div class="col-xs-4">
+                    <div class="form-group pull-left">
+                        <span style="vertical-align: middle">Page&nbsp;</span>
+                        <input name="Page" id="Page" type="number" value="@ViewBag.Page" class="form-control text-center" style="vertical-align: middle; width: 25%" onchange="document.getElementById('Form').submit()" />
+                        <span style="vertical-align: middle">&nbsp;of @ViewBag.PageTotal</span>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="text-center">
+                        <ul class="pagination" style="margin: 0">
+                            <li class="@(ViewBag.Page <= 1 ? "disabled" : null)"><a href="#" onclick="document.getElementById('Page').value = 1; document.getElementById('Form').submit()">First</a></li>
+                            <li class="@(ViewBag.Page <= 1 ? "disabled" : null)"><a href="#" onclick="document.getElementById('Page').value--; document.getElementById('Form').submit()">Prev</a></li>
+                            <li class="@(ViewBag.Page >= ViewBag.PageTotal ? "disabled" : null)"><a href="#" onclick="document.getElementById('Page').value++; document.getElementById('Form').submit()">Next</a></li>
+                            <li class="@(ViewBag.Page >= ViewBag.PageTotal ? "disabled" : null)"><a href="#" onclick="document.getElementById('Page').value = @ViewBag.PageTotal; document.getElementById('Form').submit()">Last</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="form-group pull-right">
+                        <span style="vertical-align: middle">Items per Page:&nbsp;</span>
+                        @Html.DropDownList("PageSize", new SelectList(new string[] { "5", "10", "20" }, ViewBag.PageSize), new { id = "PageSize", @class = "form-control", style = "vertical-align: middle", onchange = "document.getElementById('Form').submit()" })
+                    </div>
+                </div>
+            </div>
+        </div>
+     
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Type)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.BetreuerId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LehrstuhlId)
-                </td>
-
-                <td class="text-center" style="vertical-align: middle">
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn"><span class=" glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Edit</a>
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn"><span class=" glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Details</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn"><span class=" glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Delete</a>
-                </td>
-            </tr>
-            }
-        </tbody>
-    </table>
-</form>
+    </form>
