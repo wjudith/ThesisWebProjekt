@@ -51,13 +51,13 @@ namespace ThesisWebProjekt.Controllers
 
         // GET: Theses
         [Authorize]
-        public async Task<IActionResult> Index(string Search, string Filter, SortCriteria Sort = SortCriteria.Status, int Page = 1, int PageSize = 10)
+        public async Task<IActionResult> Index(string Search, string Filter, string Filter2, SortCriteria Sort = SortCriteria.Status, int Page = 1, int PageSize = 10)
         {
             IQueryable<Thesis> query = _context.Thesis;
+
            
             query = (Filter != null) ? query.Where(m => m.Lehrstuhl.Name == Filter) : query;
-
-          
+            query = (Filter2 != null) ? query.Where(m => m.Betreuer.Email == Filter2) : query;
 
             switch (Sort)
             {
@@ -91,6 +91,8 @@ namespace ThesisWebProjekt.Controllers
             ViewBag.Search = Search;
             ViewBag.Filter = Filter;
             ViewBag.FilterValues = new SelectList(await _context.Thesis.Select(m => m.Lehrstuhl.Name).Distinct().ToListAsync());
+            ViewBag.Filter2 = Filter2;
+            ViewBag.Filter2Values = new SelectList(await _context.Thesis.Select(m => m.Betreuer.Email).Distinct().ToListAsync());
             ViewBag.Sort = Sort;
             ViewBag.Page = Page;
             ViewBag.PageTotal = PageTotal;

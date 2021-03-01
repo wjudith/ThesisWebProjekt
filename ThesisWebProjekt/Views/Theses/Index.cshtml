@@ -54,21 +54,19 @@ Klappt so leider nicht !
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <div class="row">
-               
-                <div class="col-xs-6">
-                    <label class="control-label">Sortieren nach:</label>
-                    @Html.DropDownList("Sort", Html.GetEnumSelectList(typeof(ThesisWebProjekt.Controllers.ThesesController.SortCriteria)), new { id = "Sort", @class = "form-control", onchange = "document.getElementById('Form').submit()" })
-                </div>
-                <div class="col-xs-6">
-                    <label class="control-label">Filter:</label>
-                    @Html.DropDownList("Filter", ViewBag.FilterValues, "-Select one-", new { id = "Filter", @class = "form-control", onchange = "document.getElementById('Form').submit()" })
-                </div>
+            <div class="row col-xs-4">
+                <label class="control-label"><strong>Sortieren nach:</strong></label>
+                @Html.DropDownList("Sort", Html.GetEnumSelectList(typeof(ThesisWebProjekt.Controllers.ThesesController.SortCriteria)), new { id = "Sort", @class = "form-control", onchange = "document.getElementById('Form').submit()" })
             </div>
+                <div class="row col-xs-4">
+                    <label class="control-label"><strong>Filtern nach:</strong></label>
+                    @Html.DropDownList("Filter", ViewBag.FilterValues, "-Lehrstuhl-", new { id = "Filter", @class = "form-control", onchange = "document.getElementById('Form').submit()" })
+                    @Html.DropDownList("Filter2", ViewBag.Filter2Values, "-Betreuer/-in-", new { id = "Filter2", @class = "form-control", onchange = "document.getElementById('Form').submit()" })
+                </div>
         </div>
     </div>
 
-
+        <hr />
     <table class="table table-bordered">
         <thead>
             <tr>
