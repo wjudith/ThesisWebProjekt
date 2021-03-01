@@ -54,13 +54,10 @@ namespace ThesisWebProjekt.Controllers
         public async Task<IActionResult> Index(string Search, string Filter, SortCriteria Sort = SortCriteria.Status, int Page = 1, int PageSize = 10)
         {
             IQueryable<Thesis> query = _context.Thesis;
-            query = (Search != null) ? query.Where(m => (m.StudentName.Contains(Search))) : query;
+           
             query = (Filter != null) ? query.Where(m => (m.BetreuerId == Filter)) : query;
 
-            if (Search != null)
-            {
-                query = query.Where(m => (m.Title.Contains(Search) || m.StudentName.Contains(Search) || m.Studiengang.Name.Contains(Search) || m.Studiengang.Name.Contains(Search)));
-            }
+          
             if (Filter != null)
             {
                 query = query.Where(m => ((m.Studiengang.Id + " " + m.Studiengang.Name) == Filter));
