@@ -96,6 +96,8 @@ namespace ThesisWebProjekt.Controllers
             ViewBag.PageTotal = PageTotal;
             ViewBag.PageSize = PageSize;
 
+            ViewBag.Thesen = _context.Thesis.Include(t => t.Betreuer);
+
             return View(await query.Skip(PageSize * (Page - 1)).Take(PageSize).ToListAsync());
         }
 
@@ -296,7 +298,9 @@ namespace ThesisWebProjekt.Controllers
 
             ViewBag.Filter = Filter;
             ViewBag.FilterValues = new SelectList(await _context.Thesis.Select(m => m.Lehrstuhl.Name).Distinct().ToListAsync());
-   
+            ViewBag.Thesen = _context.Thesis.Include(t => t.Betreuer);
+
+
             return View(await query.ToListAsync());
         }
 

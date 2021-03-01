@@ -66,8 +66,15 @@
                                                     <td>@Html.DisplayFor(modelItem => item.Status)</td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Betreuer/-in Email</th>
-                                                    <td><a href="mailto:@Html.DisplayFor(modelItem => item.Betreuer.Email)">Email</a></td>
+                                                    <th>Betreuer/-in</th>
+                                                    <td>
+                                                        @{ string email = "test@gmail.com";}
+                                                        @foreach (var thes in ViewBag.Thesen)
+                                                        {
+                                                            if (item.BetreuerId == thes.BetreuerId) { email = thes.Betreuer.Email; break; }
+                                                        }
+                                                        <a>@email</a> (<a href="mailto:@email">Email</a>)
+                                                    </td>
                                                 </tr>
                                               
                                             </tbody>

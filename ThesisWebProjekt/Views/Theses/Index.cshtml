@@ -139,8 +139,13 @@ Klappt so leider nicht !
                     </td>
 
                     <td>
-                        @Html.DisplayFor(modelItem => item.BetreuerId)
-
+                        @{ string UName = "test@gmail.com";}
+                        @foreach (var thes in ViewBag.Thesen)
+                        {
+                            if (item.BetreuerId == thes.BetreuerId) { UName = thes.Betreuer.UserName; break; }
+                        }
+                        <a>@UName</a> 
+                        
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.LehrstuhlId)
