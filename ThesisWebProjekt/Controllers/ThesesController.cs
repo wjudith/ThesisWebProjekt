@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -19,11 +21,13 @@ namespace ThesisWebProjekt.Controllers
     {
         private readonly ThesisDBContext _context;
         private readonly UserManager<AppUser> _usermgr;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ThesesController(ThesisDBContext context, UserManager<AppUser> usermgr)
+        public ThesesController(ThesisDBContext context, UserManager<AppUser> usermgr, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
             _usermgr = usermgr;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         //Sortierung der Thesisliste!
@@ -148,6 +152,21 @@ namespace ThesisWebProjekt.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                if (thesis.CoverPhoto != null)
+                {
+                    string folder = "books/cover/";
+                    folder += thesis.CoverPhoto.FileName + Guid.NewGuid().ToString();
+                    string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
+
+
+                    await thesis.CoverPhoto.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+                }
+
+
+
+
+
                 thesis.Betreuer = await _usermgr.GetUserAsync(User);
                 thesis.LastModified = DateTime.Now;
 
