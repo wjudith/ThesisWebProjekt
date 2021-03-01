@@ -50,7 +50,7 @@ namespace ThesisWebProjekt.Controllers
           
 
         // GET: Theses
-
+        [Authorize]
         public async Task<IActionResult> Index(string Search, string Filter, SortCriteria Sort = SortCriteria.Status, int Page = 1, int PageSize = 10)
         {
             IQueryable<Thesis> query = _context.Thesis;
