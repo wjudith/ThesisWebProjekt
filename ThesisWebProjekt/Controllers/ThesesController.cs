@@ -280,12 +280,25 @@ namespace ThesisWebProjekt.Controllers
             return _context.Thesis.Any(e => e.Id == id);
         }
 
-        public async Task<IActionResult> Public()
+/*        public async Task<IActionResult> Public()
         {
             //je nach Lehrstuhlauswahl Rückgabe?
 
             IQueryable<Thesis> query = _context.Thesis;
             return View(await query.ToListAsync());
         }
+*/
+        public async Task<IActionResult> Public(string Filter)
+        {
+            IQueryable<Thesis> query = _context.Thesis;
+
+            query = (Filter != null) ? query.Where(m => m.Lehrstuhl.Name == Filter) : query;
+
+            ViewBag.Filter = Filter;
+            ViewBag.FilterValues = new SelectList(await _context.Thesis.Select(m => m.Lehrstuhl.Name).Distinct().ToListAsync());
+   
+            return View(await query.ToListAsync());
+        }
+
     }
 }
